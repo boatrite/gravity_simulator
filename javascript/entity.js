@@ -6,13 +6,20 @@
     function Entity(options) {
       this.draw = __bind(this.draw, this);
       this.update = __bind(this.update, this);
-      this.mass = options.mass;
-      this.radius = options.radius;
-      this.position = options.position;
-      this.color = options.color;
+      this.mass = options.mass || 1;
+      this.radius = options.radius || 10;
+      this.position = options.position || new Vector(0, 0);
+      this.velocity = options.velocity || new Vector(0, 0);
+      this.color = options.color || 'white';
     }
 
-    Entity.prototype.update = function(dt, entities) {};
+    Entity.prototype.update = function(dt, entities) {
+      var accel, center;
+      center = new Vector(500, 200);
+      accel = this.position.subtract(center);
+      this.velocity = this.velocity.subtract(accel.times(dt / 1000000));
+      return this.position = this.position.add(this.velocity.times(dt));
+    };
 
     Entity.prototype.draw = function(context) {
       return new Circle(this.position, this.radius, this.color).draw(context);
