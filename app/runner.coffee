@@ -27,4 +27,5 @@ class @Runner
     setInterval @tick, @dt
 
   tick: =>
-    @universe.tick @dt, @context
+    dtInSeconds = @dt / 1000
+    @universe.tick dtInSeconds, @context

@@ -3,11 +3,29 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   this.Path = (function() {
-    function Path(positions, color) {
-      this.positions = positions;
+    var NO_PATH_LENGTH_LIMIT;
+
+    NO_PATH_LENGTH_LIMIT = -1;
+
+    function Path(start, maxPathLength, color) {
+      this.maxPathLength = maxPathLength;
       this.color = color;
+      this.shorten = __bind(this.shorten, this);
+      this.overLengthLimit = __bind(this.overLengthLimit, this);
+      this.lastPosition = __bind(this.lastPosition, this);
       this.draw = __bind(this.draw, this);
+      this.continueTo = __bind(this.continueTo, this);
+      this.positions = [start];
     }
+
+    Path.prototype.continueTo = function(position) {
+      if (!this.lastPosition().equals(position)) {
+        this.positions.push(position);
+      }
+      if (this.overLengthLimit()) {
+        return this.shorten();
+      }
+    };
 
     Path.prototype.draw = function(context) {
       var i, position, _i, _len, _ref;
@@ -20,6 +38,18 @@
       context.strokeStyle = this.color;
       context.lineWidth = 2;
       return context.stroke();
+    };
+
+    Path.prototype.lastPosition = function() {
+      return this.positions[this.positions.length - 1];
+    };
+
+    Path.prototype.overLengthLimit = function() {
+      return this.maxPathLength !== NO_PATH_LENGTH_LIMIT && this.positions.length >= this.maxPathLength;
+    };
+
+    Path.prototype.shorten = function() {
+      return this.positions.shift();
     };
 
     return Path;

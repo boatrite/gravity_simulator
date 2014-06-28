@@ -3,11 +3,8 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   this.Entity = (function() {
-    var NO_PATH_LENGTH_LIMIT;
-
-    NO_PATH_LENGTH_LIMIT = -1;
-
     function Entity(options) {
+      this.accel = __bind(this.accel, this);
       this.draw = __bind(this.draw, this);
       this.update = __bind(this.update, this);
       this.mass = options.mass || 1;
@@ -15,37 +12,27 @@
       this.position = options.position || new Vector(0, 0);
       this.velocity = options.velocity || new Vector(0, 0);
       this.color = options.color || 'white';
-      this.path = [this.position];
-      this.maxPathLength = NO_PATH_LENGTH_LIMIT;
+      this.path = new Path(this.position, 400, this.color);
     }
 
     Entity.prototype.update = function(dt, entities) {
-      var accel, accel_dir, center, centripetal_accel, tangential_velocity;
-      dt /= 1000;
-      center = new Vector(500, 200);
-      accel_dir = center.subtract(this.position).normalize();
-      tangential_velocity = this.velocity.length();
-      centripetal_accel = tangential_velocity * tangential_velocity / 125;
-      accel = accel_dir.times(centripetal_accel);
-      this.velocity = this.velocity.add(accel.times(dt));
+      this.velocity = this.velocity.add(this.accel().times(dt));
       this.position = this.position.add(this.velocity.times(dt));
-      return this.updatePath();
-    };
-
-    Entity.prototype.updatePath = function() {
-      var last, _ref;
-      _ref = this.path, last = _ref[_ref.length - 1];
-      if (!last.equals(this.position)) {
-        this.path.push(this.position);
-      }
-      if (this.maxPathLength !== NO_PATH_LENGTH_LIMIT && this.path.length > this.maxPathLength) {
-        return this.path.shift();
-      }
+      return this.path.continueTo(this.position);
     };
 
     Entity.prototype.draw = function(context) {
       new Circle(this.position, this.radius, this.color).draw(context);
-      return new Path(this.path, this.color).draw(context);
+      return this.path.draw(context);
+    };
+
+    Entity.prototype.accel = function() {
+      var accel_dir, center, centripetal_accel, tangential_velocity;
+      center = new Vector(500, 200);
+      accel_dir = center.subtract(this.position).normalize();
+      tangential_velocity = this.velocity.length();
+      centripetal_accel = tangential_velocity * tangential_velocity / 125;
+      return accel_dir.times(centripetal_accel);
     };
 
     return Entity;

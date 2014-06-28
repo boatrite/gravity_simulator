@@ -31,7 +31,9 @@
     }
 
     Runner.prototype.tick = function() {
-      return this.universe.tick(this.dt, this.context);
+      var dtInSeconds;
+      dtInSeconds = this.dt / 1000;
+      return this.universe.tick(dtInSeconds, this.context);
     };
 
     return Runner;
