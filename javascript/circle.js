@@ -3,17 +3,16 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   this.Circle = (function() {
-    function Circle(position, radius, color) {
-      this.draw = __bind(this.draw, this);
-      this.centerX = position.x;
-      this.centerY = position.y;
+    function Circle(center, radius, color) {
+      this.center = center;
       this.radius = radius;
       this.color = color;
+      this.draw = __bind(this.draw, this);
     }
 
     Circle.prototype.draw = function(context) {
       context.beginPath();
-      context.arc(this.centerX, this.centerY, this.radius, 0, 2 * Math.PI, false);
+      context.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI, false);
       context.fillStyle = this.color;
       return context.fill();
     };

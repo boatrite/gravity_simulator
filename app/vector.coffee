@@ -22,3 +22,6 @@ class @Vector
 
   length: =>
     Math.sqrt @x*@x + @y*@y
+
+  equals: (other) =>
+    @x == other.x && @y == other.y

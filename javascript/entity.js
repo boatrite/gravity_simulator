@@ -11,10 +11,11 @@
       this.position = options.position || new Vector(0, 0);
       this.velocity = options.velocity || new Vector(0, 0);
       this.color = options.color || 'white';
+      this.previousPositions = [this.position];
     }
 
     Entity.prototype.update = function(dt, entities) {
-      var accel, accel_dir, center, centripetal_accel, tangential_velocity;
+      var accel, accel_dir, center, centripetal_accel, last, tangential_velocity, _ref;
       dt /= 1000;
       center = new Vector(500, 200);
       accel_dir = center.subtract(this.position).normalize();
@@ -22,11 +23,16 @@
       centripetal_accel = tangential_velocity * tangential_velocity / 125;
       accel = accel_dir.times(centripetal_accel);
       this.velocity = this.velocity.add(accel.times(dt));
-      return this.position = this.position.add(this.velocity.times(dt));
+      this.position = this.position.add(this.velocity.times(dt));
+      _ref = this.previousPositions, last = _ref[_ref.length - 1];
+      if (!last.equals(this.position)) {
+        return this.previousPositions.push(this.position);
+      }
     };
 
     Entity.prototype.draw = function(context) {
-      return new Circle(this.position, this.radius, this.color).draw(context);
+      new Circle(this.position, this.radius, this.color).draw(context);
+      return new Path(this.previousPositions, this.color).draw(context);
     };
 
     return Entity;

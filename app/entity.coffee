@@ -5,6 +5,7 @@ class @Entity
     @position = options.position || new Vector 0, 0
     @velocity = options.velocity || new Vector 0, 0
     @color = options.color || 'white'
+    @previousPositions = [@position]
 
   update: (dt, entities) =>
     dt /= 1000 # ms to seconds
@@ -16,5 +17,11 @@ class @Entity
     @velocity = @velocity.add accel.times(dt)
     @position = @position.add @velocity.times(dt)
 
+    [..., last] = @previousPositions
+    unless last.equals @position
+      @previousPositions.push @position
+
+
   draw: (context) =>
     new Circle(@position, @radius, @color).draw context
+    new Path(@previousPositions, @color).draw context

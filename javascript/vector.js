@@ -6,6 +6,7 @@
     function Vector(x, y) {
       this.x = x;
       this.y = y;
+      this.equals = __bind(this.equals, this);
       this.length = __bind(this.length, this);
       this.normalize = __bind(this.normalize, this);
       this.divide = __bind(this.divide, this);
@@ -43,6 +44,10 @@
 
     Vector.prototype.length = function() {
       return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+
+    Vector.prototype.equals = function(other) {
+      return this.x === other.x && this.y === other.y;
     };
 
     return Vector;
