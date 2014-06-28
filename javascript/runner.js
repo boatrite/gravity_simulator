@@ -11,7 +11,7 @@
       this.context = canvas.getContext('2d');
       this.universe = new Universe(width, height);
       sun = new Entity({
-        mass: 10,
+        mass: 1000000,
         radius: 40,
         position: new Vector(width / 2, height / 2),
         color: 'yellow'

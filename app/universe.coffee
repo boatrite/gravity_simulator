@@ -1,4 +1,6 @@
 class @Universe
+  @G = 1 # Gravitational constant
+
   constructor: (@width, @height) ->
     @entities = []
 

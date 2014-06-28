@@ -4,7 +4,7 @@
 
   this.Entity = (function() {
     function Entity(options) {
-      this.accel = __bind(this.accel, this);
+      this.calculateForce = __bind(this.calculateForce, this);
       this.draw = __bind(this.draw, this);
       this.update = __bind(this.update, this);
       this.mass = options.mass || 1;
@@ -12,12 +12,21 @@
       this.position = options.position || new Vector(0, 0);
       this.velocity = options.velocity || new Vector(0, 0);
       this.color = options.color || 'white';
-      this.path = new Path(this.position, 200, this.color);
+      this.path = new Path(this.position, 1000, this.color);
     }
 
     Entity.prototype.update = function(dt, entities) {
-      this.velocity = this.velocity.add(this.accel().times(dt));
-      this.position = this.position.add(this.velocity.times(dt));
+      var accel, entity, force, _i, _len;
+      for (_i = 0, _len = entities.length; _i < _len; _i++) {
+        entity = entities[_i];
+        if (!(entity !== this)) {
+          continue;
+        }
+        force = this.calculateForce(entity);
+        accel = force.divide(this.mass);
+        this.velocity = this.velocity.add(accel.times(dt));
+        this.position = this.position.add(this.velocity.times(dt));
+      }
       return this.path.continueTo(this.position);
     };
 
@@ -26,13 +35,13 @@
       return this.path.draw(context);
     };
 
-    Entity.prototype.accel = function() {
-      var accel_dir, center, centripetal_accel, tangential_velocity;
-      center = new Vector(500, 200);
-      accel_dir = center.subtract(this.position).normalize();
-      tangential_velocity = this.velocity.length();
-      centripetal_accel = tangential_velocity * tangential_velocity / 125;
-      return accel_dir.times(centripetal_accel);
+    Entity.prototype.calculateForce = function(otherEntity) {
+      var force_direction, force_magnitude, radialFromEntityToThis, separationDistance;
+      radialFromEntityToThis = this.position.subtract(otherEntity.position);
+      separationDistance = radialFromEntityToThis.length();
+      force_magnitude = (-Universe.G * otherEntity.mass * this.mass) / (separationDistance * separationDistance);
+      force_direction = radialFromEntityToThis.normalize();
+      return force_direction.times(force_magnitude);
     };
 
     return Entity;

@@ -3,6 +3,8 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   this.Universe = (function() {
+    Universe.G = 1;
+
     function Universe(width, height) {
       this.width = width;
       this.height = height;
