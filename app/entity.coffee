@@ -7,12 +7,13 @@ class @Entity
     @color = options.color || 'white'
 
   update: (dt, entities) =>
-    # TODO This is totally jank.
-    # Accel needs to be properly calculated
-    # But work on gettings tails next
+    dt /= 1000 # ms to seconds
     center = new Vector 500, 200
-    accel = @position.subtract center
-    @velocity = @velocity.subtract accel.times(dt/1000000)
+    accel_dir = center.subtract(@position).normalize()
+    tangential_velocity = @velocity.length()
+    centripetal_accel = tangential_velocity * tangential_velocity / 125
+    accel = accel_dir.times centripetal_accel
+    @velocity = @velocity.add accel.times(dt)
     @position = @position.add @velocity.times(dt)
 
   draw: (context) =>

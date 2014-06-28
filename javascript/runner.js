@@ -21,7 +21,7 @@
         mass: 1,
         radius: 10,
         position: new Vector(width / 2 + width / 8, height / 2),
-        velocity: new Vector(0, 0.1),
+        velocity: new Vector(0, -30),
         color: 'lightBlue'
       });
       this.universe.addEntity(earth);

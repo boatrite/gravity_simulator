@@ -1,3 +1,5 @@
 #!/bin/bash
 
-coffee --output javascript --watch --compile coffeescript
+coffee --output javascript --watch --compile app &
+coffee --watch --compile main.coffee &
+coffee --output javascript --watch --compile spec

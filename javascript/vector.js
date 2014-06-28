@@ -6,8 +6,11 @@
     function Vector(x, y) {
       this.x = x;
       this.y = y;
-      this.times = __bind(this.times, this);
+      this.length = __bind(this.length, this);
+      this.normalize = __bind(this.normalize, this);
+      this.divide = __bind(this.divide, this);
       this.subtract = __bind(this.subtract, this);
+      this.times = __bind(this.times, this);
       this.add = __bind(this.add, this);
     }
 
@@ -15,12 +18,31 @@
       return new Vector(this.x + vector.x, this.y + vector.y);
     };
 
+    Vector.prototype.times = function(scalar) {
+      return new Vector(scalar * this.x, scalar * this.y);
+    };
+
     Vector.prototype.subtract = function(vector) {
       return this.add(vector.times(-1));
     };
 
-    Vector.prototype.times = function(scalar) {
-      return new Vector(scalar * this.x, scalar * this.y);
+    Vector.prototype.divide = function(scalar) {
+      if (scalar === 0) {
+        alert("Can't divide by 0");
+      }
+      return this.times(1 / scalar);
+    };
+
+    Vector.prototype.normalize = function() {
+      if (this.length() === 0) {
+        return new Vector(0, 0);
+      } else {
+        return this.divide(this.length());
+      }
+    };
+
+    Vector.prototype.length = function() {
+      return Math.sqrt(this.x * this.x + this.y * this.y);
     };
 
     return Vector;

@@ -14,10 +14,14 @@
     }
 
     Entity.prototype.update = function(dt, entities) {
-      var accel, center;
+      var accel, accel_dir, center, centripetal_accel, tangential_velocity;
+      dt /= 1000;
       center = new Vector(500, 200);
-      accel = this.position.subtract(center);
-      this.velocity = this.velocity.subtract(accel.times(dt / 1000000));
+      accel_dir = center.subtract(this.position).normalize();
+      tangential_velocity = this.velocity.length();
+      centripetal_accel = tangential_velocity * tangential_velocity / 125;
+      accel = accel_dir.times(centripetal_accel);
+      this.velocity = this.velocity.add(accel.times(dt));
       return this.position = this.position.add(this.velocity.times(dt));
     };
 
