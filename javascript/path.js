@@ -16,6 +16,7 @@
       this.draw = __bind(this.draw, this);
       this.continueTo = __bind(this.continueTo, this);
       this.positions = [start];
+      this.pathWidth = 3;
     }
 
     Path.prototype.continueTo = function(position) {
@@ -28,16 +29,24 @@
     };
 
     Path.prototype.draw = function(context) {
-      var i, position, _i, _len, _ref;
-      context.beginPath();
+      var currWidth, i, position, _i, _len, _ref, _results;
       _ref = this.positions;
+      _results = [];
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         position = _ref[i];
-        context.lineTo(position.x, position.y);
+        if (this.positions[i + 1]) {
+          context.beginPath();
+          context.moveTo(position.x, position.y);
+          context.lineTo(this.positions[i + 1].x, this.positions[i + 1].y);
+          context.strokeStyle = this.color;
+          currWidth = this.pathWidth * ((i + 1) / this.positions.length);
+          context.lineWidth = currWidth;
+          _results.push(context.stroke());
+        } else {
+          _results.push(void 0);
+        }
       }
-      context.strokeStyle = this.color;
-      context.lineWidth = 2;
-      return context.stroke();
+      return _results;
     };
 
     Path.prototype.lastPosition = function() {

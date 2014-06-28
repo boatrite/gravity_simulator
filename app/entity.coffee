@@ -5,7 +5,7 @@ class @Entity
     @position = options.position || new Vector 0, 0
     @velocity = options.velocity || new Vector 0, 0
     @color = options.color || 'white'
-    @path = new Path @position, 400, @color
+    @path = new Path @position, 200, @color
 
   update: (dt, entities) =>
     @velocity = @velocity.add @accel().times(dt)

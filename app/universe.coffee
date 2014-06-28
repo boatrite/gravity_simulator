@@ -8,7 +8,7 @@ class @Universe
   tick: (dt, context) =>
     @updateAll dt
     @drawAll context
-    @drawText context, "dt = #{dt}ms"
+    @drawText context, "dt = #{dt}s"
 
   updateAll: (dt) =>
     for entity in @entities

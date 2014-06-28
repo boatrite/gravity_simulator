@@ -4,6 +4,7 @@ class @Path
   # maxPathLength: maximum number of elements in @positions array
   constructor: (start, @maxPathLength, @color) ->
     @positions = [start]
+    @pathWidth = 3
 
   continueTo: (position) =>
     unless @lastPosition().equals position
@@ -12,12 +13,15 @@ class @Path
       @shorten()
 
   draw: (context) =>
-    context.beginPath()
     for position, i in @positions
-      context.lineTo position.x, position.y
-    context.strokeStyle = @color
-    context.lineWidth = 2
-    context.stroke()
+      if @positions[i + 1]
+        context.beginPath()
+        context.moveTo position.x, position.y
+        context.lineTo @positions[i+1].x, @positions[i+1].y
+        context.strokeStyle = @color
+        currWidth = @pathWidth * ((i+1) / @positions.length)
+        context.lineWidth = currWidth
+        context.stroke()
 
   # private
 

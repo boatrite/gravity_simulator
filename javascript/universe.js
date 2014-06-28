@@ -22,7 +22,7 @@
     Universe.prototype.tick = function(dt, context) {
       this.updateAll(dt);
       this.drawAll(context);
-      return this.drawText(context, "dt = " + dt + "ms");
+      return this.drawText(context, "dt = " + dt + "s");
     };
 
     Universe.prototype.updateAll = function(dt) {
