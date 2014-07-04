@@ -24,8 +24,14 @@ class @Runner
 
     fps = 50
     @dt = 1000 / fps
-    setInterval @tick, @dt
+    @intervalId = setInterval @tick, @dt
 
   tick: =>
     dtInSeconds = @dt / 1000
     @universe.tick dtInSeconds, @context
+
+  pause: =>
+    clearInterval @intervalId
+
+  play: =>
+    @intervalId = setInterval @tick, @dt

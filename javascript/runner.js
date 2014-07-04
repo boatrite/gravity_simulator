@@ -4,6 +4,8 @@
 
   this.Runner = (function() {
     function Runner(canvas) {
+      this.play = __bind(this.play, this);
+      this.pause = __bind(this.pause, this);
       this.tick = __bind(this.tick, this);
       var earth, fps, height, sun, width;
       width = canvas.width;
@@ -27,13 +29,21 @@
       this.universe.addEntity(earth);
       fps = 50;
       this.dt = 1000 / fps;
-      setInterval(this.tick, this.dt);
+      this.intervalId = setInterval(this.tick, this.dt);
     }
 
     Runner.prototype.tick = function() {
       var dtInSeconds;
       dtInSeconds = this.dt / 1000;
       return this.universe.tick(dtInSeconds, this.context);
+    };
+
+    Runner.prototype.pause = function() {
+      return clearInterval(this.intervalId);
+    };
+
+    Runner.prototype.play = function() {
+      return this.intervalId = setInterval(this.tick, this.dt);
     };
 
     return Runner;

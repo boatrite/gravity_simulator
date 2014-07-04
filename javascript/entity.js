@@ -12,7 +12,7 @@
       this.position = options.position || new Vector(0, 0);
       this.velocity = options.velocity || new Vector(0, 0);
       this.color = options.color || 'white';
-      this.path = new Path(this.position, 1000, this.color);
+      this.path = new Path(this.position, 200, this.color);
     }
 
     Entity.prototype.update = function(dt, entities) {
