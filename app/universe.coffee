@@ -9,6 +9,9 @@ class @Universe
     @entities.push entity
 
   tick: (dt, context) =>
+    # TODO Remove me
+    #for entity in @entities
+      #console.log "#{entity.name} posX #{entity.position.x}"
     @updateAll dt
     @drawAll context
 

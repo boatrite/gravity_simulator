@@ -7,8 +7,42 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
   </head>
   <body>
-    <button id="play" type="button">Pause</button>
-    <input id="G" type="number" min="0">G (N[m/kg]^2)</input>
+    <div class="simulator-controls">
+      <h1>Simulator Controls</h1>
+      <button id="play" type="button">Pause</button>
+    </div>
+
+    <div class="constants-control">
+      <h1>Universal Constants</h1>
+      G = <input id="G" type="number" min="0"></input>N(m/kg)^2
+    </div>
+
+    <div class="entity-controls">
+      <div class="sun">
+        <h1>Sun</h1>
+        <div class="entity-prop">
+          Mass = <input id="mass-sun" type="number" min="0"></input>kg
+        </div>
+        <div class="entity-prop">
+          Radius = <input id="radius-sun" type="number" min="0"></input>px
+        </div>
+        <div class="entity-prop">
+          Position = (
+          <input id="position-x-sun" type="number" min="0"></input>,
+          <input id="position-y-sun" type="number" min="0"></input>
+          )
+        </div>
+        <div class="entity-prop">
+          Velocity = (
+          <input id="velocity-x-sun" type="number"></input>,
+          <input id="velocity-y-sun" type="number"></input>
+          )
+        </div>
+        <div class="entity-prop">
+          Color = <input id="color-sun" type="color"></input>
+        </div>
+      </div>
+    </div>
     <canvas id="canvas" width="1000" height="400"></canvas>
   </body>
 </html>
