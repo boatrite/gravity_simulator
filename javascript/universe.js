@@ -6,24 +6,15 @@
     Universe.G = 1;
 
     function Universe(width, height) {
-      var $GInput;
       this.width = width;
       this.height = height;
-      this.drawText = __bind(this.drawText, this);
       this.drawBackground = __bind(this.drawBackground, this);
       this.drawAll = __bind(this.drawAll, this);
       this.updateAll = __bind(this.updateAll, this);
       this.tick = __bind(this.tick, this);
       this.addEntity = __bind(this.addEntity, this);
       this.entities = [];
-      $GInput = $("#G");
-      $GInput.val(Universe.G);
-      $GInput.on('change', (function(_this) {
-        return function() {
-          Universe.G = $GInput.val();
-          return console.log(Universe.G);
-        };
-      })(this));
+      new GInput();
     }
 
     Universe.prototype.addEntity = function(entity) {
@@ -61,12 +52,6 @@
     Universe.prototype.drawBackground = function(context) {
       context.fillStyle = 'black';
       return context.fillRect(0, 0, this.width, this.height);
-    };
-
-    Universe.prototype.drawText = function(context, text) {
-      context.fillStyle = 'white';
-      context.font = '20px Arial';
-      return context.fillText(text, 15, 30);
     };
 
     return Universe;
