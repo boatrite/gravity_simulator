@@ -6,13 +6,15 @@
 
   require(['javascript/entity']);
 
-  require(['javascript/g_input']);
-
   require(['javascript/line']);
 
-  require(['javascript/path']);
+  require(['javascript/listeners/entity_inputs']);
 
-  require(['javascript/play_button']);
+  require(['javascript/listeners/g_input']);
+
+  require(['javascript/listeners/play_button']);
+
+  require(['javascript/path']);
 
   require(['javascript/universe']);
 

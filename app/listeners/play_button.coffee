@@ -1,10 +1,13 @@
 class @PlayButton
-  constructor: (runner) ->
+  constructor: (@runner) ->
+    @attachListeners()
+
+  attachListeners: =>
     $playBtn = $('#play')
-    $playBtn.on 'click', ->
+    $playBtn.on 'click', =>
       if $playBtn.html() == 'Play'
-        runner.play()
+        @runner.play()
         $playBtn.html 'Pause'
       else if $playBtn.html() == 'Pause'
-        runner.pause()
+        @runner.pause()
         $playBtn.html 'Play'

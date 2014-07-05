@@ -11,8 +11,10 @@
       this.radius = options.radius || 10;
       this.position = options.position || new Vector(0, 0);
       this.velocity = options.velocity || new Vector(0, 0);
-      this.color = options.color || 'white';
-      this.path = new Path(this.position, 200, this.color);
+      this.color = options.color || '#ffffff';
+      this.name = options.name;
+      this.path = new Path(this.position, 400, this.color);
+      new EntityInputs(this);
     }
 
     Entity.prototype.update = function(dt, entities) {
@@ -36,12 +38,12 @@
     };
 
     Entity.prototype.calculateForce = function(otherEntity) {
-      var force_direction, force_magnitude, radialFromEntityToThis, separationDistance;
+      var forceDirection, forceMagnitude, radialFromEntityToThis, separationDistance;
       radialFromEntityToThis = this.position.subtract(otherEntity.position);
       separationDistance = radialFromEntityToThis.length();
-      force_magnitude = (-Universe.G * otherEntity.mass * this.mass) / (separationDistance * separationDistance);
-      force_direction = radialFromEntityToThis.normalize();
-      return force_direction.times(force_magnitude);
+      forceMagnitude = (-Universe.G * otherEntity.mass * this.mass) / (separationDistance * separationDistance);
+      forceDirection = radialFromEntityToThis.normalize();
+      return forceDirection.times(forceMagnitude);
     };
 
     return Entity;

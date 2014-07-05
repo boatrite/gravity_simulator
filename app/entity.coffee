@@ -4,8 +4,10 @@ class @Entity
     @radius = options.radius || 10
     @position = options.position || new Vector 0, 0
     @velocity = options.velocity || new Vector 0, 0
-    @color = options.color || 'white'
-    @path = new Path @position, 200, @color
+    @color = options.color || '#ffffff'
+    @name = options.name
+    @path = new Path @position, 400, @color
+    new EntityInputs this
 
   update: (dt, entities) =>
     for entity in entities when entity isnt this
@@ -24,7 +26,7 @@ class @Entity
   calculateForce: (otherEntity) =>
     radialFromEntityToThis = @position.subtract otherEntity.position
     separationDistance = radialFromEntityToThis.length()
-    force_magnitude = (-Universe.G * otherEntity.mass * @mass) / (separationDistance * separationDistance)
-    force_direction = radialFromEntityToThis.normalize()
-    force_direction.times force_magnitude
+    forceMagnitude = (-Universe.G * otherEntity.mass * @mass) / (separationDistance * separationDistance)
+    forceDirection = radialFromEntityToThis.normalize()
+    forceDirection.times forceMagnitude
 
