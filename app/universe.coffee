@@ -1,8 +1,13 @@
 class @Universe
-  @G = 1 # Gravitational constant
+  @G: 1 # Gravitational constant
 
   constructor: (@width, @height) ->
     @entities = []
+    $GInput = $("#G")
+    $GInput.val Universe.G
+    $GInput.on 'change', =>
+      Universe.G = $GInput.val()
+      console.log Universe.G
 
   addEntity: (entity) =>
     @entities.push entity
@@ -10,7 +15,6 @@ class @Universe
   tick: (dt, context) =>
     @updateAll dt
     @drawAll context
-    @drawText context, "dt = #{dt}s"
 
   updateAll: (dt) =>
     for entity in @entities

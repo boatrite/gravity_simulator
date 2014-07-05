@@ -6,6 +6,7 @@
     Universe.G = 1;
 
     function Universe(width, height) {
+      var $GInput;
       this.width = width;
       this.height = height;
       this.drawText = __bind(this.drawText, this);
@@ -15,6 +16,14 @@
       this.tick = __bind(this.tick, this);
       this.addEntity = __bind(this.addEntity, this);
       this.entities = [];
+      $GInput = $("#G");
+      $GInput.val(Universe.G);
+      $GInput.on('change', (function(_this) {
+        return function() {
+          Universe.G = $GInput.val();
+          return console.log(Universe.G);
+        };
+      })(this));
     }
 
     Universe.prototype.addEntity = function(entity) {
@@ -23,8 +32,7 @@
 
     Universe.prototype.tick = function(dt, context) {
       this.updateAll(dt);
-      this.drawAll(context);
-      return this.drawText(context, "dt = " + dt + "s");
+      return this.drawAll(context);
     };
 
     Universe.prototype.updateAll = function(dt) {
