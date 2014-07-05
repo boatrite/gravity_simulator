@@ -6,6 +6,8 @@
 
   require(['javascript/entity']);
 
+  require(['javascript/g_input']);
+
   require(['javascript/line']);
 
   require(['javascript/path']);
@@ -17,9 +19,8 @@
   require(['javascript/vector']);
 
   require(['javascript/runner'], function() {
-    var playButton, runner;
-    runner = new Runner(document.getElementById('canvas'));
-    return playButton = new PlayButton(runner);
+    var runner;
+    return runner = new Runner(document.getElementById('canvas'));
   });
 
 }).call(this);

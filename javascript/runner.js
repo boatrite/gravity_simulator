@@ -30,6 +30,7 @@
       fps = 50;
       this.dt = 1000 / fps;
       this.intervalId = setInterval(this.tick, this.dt);
+      new PlayButton(this);
     }
 
     Runner.prototype.tick = function() {

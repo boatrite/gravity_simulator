@@ -25,6 +25,7 @@ class @Runner
     fps = 50
     @dt = 1000 / fps
     @intervalId = setInterval @tick, @dt
+    new PlayButton this
 
   tick: =>
     dtInSeconds = @dt / 1000
