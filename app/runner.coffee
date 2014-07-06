@@ -28,6 +28,7 @@ class @Runner
     @dt = 1000 / fps
     @intervalId = setInterval @tick, @dt
     new PlayButton this
+    new AddEntityButton @universe
 
   tick: =>
     dtInSeconds = @dt / 1000

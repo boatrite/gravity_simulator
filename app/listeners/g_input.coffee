@@ -6,9 +6,4 @@ class @GInput
     $GInput = $("#G")
     $GInput.val Universe.G
     $GInput.on 'change', =>
-      Universe.G = @toInt $GInput.val()
-
-   # private
-
-   toInt: (string) ->
-      parseInt string, 10
+      Universe.G = toInt $GInput.val()

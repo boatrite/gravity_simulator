@@ -9,7 +9,34 @@
   <body>
     <div class="simulator-controls">
       <h1>Simulator Controls</h1>
-      <button id="play" type="button">Pause</button>
+
+      <button id="play">Pause</button>
+
+      <div class="add-entity">
+        <h2>Add Entity</h2>
+        <div class="entity-prop">
+          Mass = <input id="mass-new-entity" type="number" min="0" value="100"></input>kg
+        </div>
+        <div class="entity-prop">
+          Radius = <input id="radius-new-entity" type="number" min="0" value="10"></input>px
+        </div>
+        <div class="entity-prop">
+          Position = (
+          <input id="position-x-new-entity" type="number" min="0" value="100"></input>,
+          <input id="position-y-new-entity" type="number" min="0" value="100"></input>
+          )
+        </div>
+        <div class="entity-prop">
+          Velocity = (
+          <input id="velocity-x-new-entity" type="number" value="0"></input>,
+          <input id="velocity-y-new-entity" type="number" value="0"></input>
+          )
+        </div>
+        <div class="entity-prop">
+          Color = <input id="color-new-entity" type="color" value="#ffffff"></input>
+        </div>
+        <button>Add space entity</button>
+      </div>
     </div>
 
     <div class="constants-control">

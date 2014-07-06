@@ -4,9 +4,11 @@
 
   require(['javascript/entity']);
 
-  require(['javascript/g_input']);
+  require(['javascript/global']);
 
   require(['javascript/line']);
+
+  require(['javascript/listeners/add_entity_button']);
 
   require(['javascript/listeners/entity_inputs']);
 

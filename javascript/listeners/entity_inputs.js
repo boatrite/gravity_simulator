@@ -16,42 +16,42 @@
       $mass.val(this.entity.mass);
       $mass.on('change', (function(_this) {
         return function() {
-          return _this.entity.mass = _this.toInt($mass.val());
+          return _this.entity.mass = toInt($mass.val());
         };
       })(this));
       $radius = $("#radius-" + entityName);
       $radius.val(this.entity.radius);
       $radius.on('change', (function(_this) {
         return function() {
-          return _this.entity.radius = _this.toInt($radius.val());
+          return _this.entity.radius = toInt($radius.val());
         };
       })(this));
       $posX = $("#position-x-" + entityName);
       $posX.val(this.entity.position.x);
       $posX.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.x = _this.toInt($posX.val());
+          return _this.entity.position.x = toInt($posX.val());
         };
       })(this));
       $posY = $("#position-y-" + entityName);
       $posY.val(this.entity.position.y);
       $posY.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.y = _this.toInt($posY.val());
+          return _this.entity.position.y = toInt($posY.val());
         };
       })(this));
       $velX = $("#velocity-x-" + entityName);
       $velX.val(this.entity.velocity.x);
       $velX.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.x = _this.toInt($velX.val());
+          return _this.entity.velocity.x = toInt($velX.val());
         };
       })(this));
       $velY = $("#velocity-y-" + entityName);
       $velY.val(this.entity.velocity.y);
       $velY.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.y = _this.toInt($velY.val());
+          return _this.entity.velocity.y = toInt($velY.val());
         };
       })(this));
       $color = $("#color-" + entityName);
@@ -61,10 +61,6 @@
           return _this.entity.color = $color.val();
         };
       })(this));
-    };
-
-    EntityInputs.prototype.toInt = function(string) {
-      return parseInt(string, 10);
     };
 
     return EntityInputs;

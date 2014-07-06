@@ -11,13 +11,9 @@
       $GInput.val(Universe.G);
       return $GInput.on('change', (function(_this) {
         return function() {
-          return Universe.G = _this.toInt($GInput.val());
+          return Universe.G = toInt($GInput.val());
         };
       })(this));
-    };
-
-    GInput.prototype.toInt = function(string) {
-      return parseInt(string, 10);
     };
 
     return GInput;
