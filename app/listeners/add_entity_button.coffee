@@ -2,25 +2,21 @@ class @AddEntityButton
   constructor: (@universe) ->
     @attachListeners()
 
-  attachListeners: ->
-    $addEntityButton = $(".add-entity").find("button")
-    $addEntityButton.on 'click', =>
+  attachListeners: =>
+    $space = $("#space")
+    $space.on 'click', (e) =>
+      x = e.pageX - $space.position().left
+      y = e.pageY - $space.position().top
+      position = new Vector x, y
+
       entityCount = @universe.entities.length
-      mass = toInt $("#mass-new-entity").val()
-      radius = toInt $("#radius-new-entity").val()
-      posX = toInt $("#position-x-new-entity").val()
-      posY = toInt $("#position-y-new-entity").val()
-      position = new Vector posX, posY
-      velX = toInt $("#velocity-x-new-entity").val()
-      velY = toInt $("#velocity-y-new-entity").val()
-      velocity = new Vector velX, velY
-      color = $("color-new-entity").val()
+      name = "entity-#{entityCount+1}"
+
+      color = randomColor()
+
       entity = new Entity(
-        name: "entity-#{entityCount+1}",
-        mass: mass,
-        radius: radius,
+        name: name,
         position: position,
-        velocity: velocity,
         color: color
       )
       @universe.addEntity entity
