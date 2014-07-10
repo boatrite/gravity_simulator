@@ -40,32 +40,32 @@ class @EntityInputs
     $mass = $("#mass-#{name}")
     $mass.val @entity.mass
     $mass.on 'change', =>
-      @entity.mass = toInt $mass.val()
+      @entity.mass = $mass.val().toInt()
 
     $radius = $("#radius-#{name}")
     $radius.val @entity.radius
     $radius.on 'change', =>
-      @entity.radius = toInt $radius.val()
+      @entity.radius = $radius.val().toInt()
 
     $posX = $("#position-x-#{name}")
     $posX.val @entity.position.x
     $posX.on 'change', =>
-      @entity.position.x = toInt $posX.val()
+      @entity.position.x = $posX.val().toInt()
 
     $posY = $("#position-y-#{name}")
     $posY.val @entity.position.y
     $posY.on 'change', =>
-      @entity.position.y = toInt $posY.val()
+      @entity.position.y = $posY.val().toInt()
 
     $velX = $("#velocity-x-#{name}")
     $velX.val @entity.velocity.x
     $velX.on 'change', =>
-      @entity.velocity.x = toInt $velX.val()
+      @entity.velocity.x = $velX.val().toInt()
 
     $velY = $("#velocity-y-#{name}")
     $velY.val @entity.velocity.y
     $velY.on 'change', =>
-      @entity.velocity.y = toInt $velY.val()
+      @entity.velocity.y = $velY.val().toInt()
 
     $color = $("#color-#{name}")
     $color.val @entity.color

@@ -10,7 +10,7 @@
       this.mass = options.mass || 1;
       this.radius = options.radius || 10;
       this.position = options.position || new Vector(0, 0);
-      this.velocity = options.velocity || new Vector(0, 0);
+      this.velocity = options.velocity || new Vector(0, 20..randSign());
       this.color = options.color || '#ffffff';
       this.name = options.name;
       this.path = new Path(this.position, 400, this.color);

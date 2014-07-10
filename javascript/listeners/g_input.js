@@ -11,7 +11,7 @@
       $GInput.val(Universe.G);
       return $GInput.on('change', (function(_this) {
         return function() {
-          return Universe.G = toInt($GInput.val());
+          return Universe.G = $GInput.val().toInt();
         };
       })(this));
     };

@@ -6,4 +6,4 @@ class @GInput
     $GInput = $("#G")
     $GInput.val Universe.G
     $GInput.on 'change', =>
-      Universe.G = toInt $GInput.val()
+      Universe.G = $GInput.val().toInt()

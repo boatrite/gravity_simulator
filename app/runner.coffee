@@ -10,6 +10,7 @@ class @Runner
       mass: 1000000,
       radius: 40,
       position: new Vector(width / 2, height / 2),
+      velocity: new Vector(0, 0),
       color: '#ffe700'
     )
     @universe.addEntity sun

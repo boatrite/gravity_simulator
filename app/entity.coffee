@@ -3,7 +3,7 @@ class @Entity
     @mass = options.mass || 1
     @radius = options.radius || 10
     @position = options.position || new Vector 0, 0
-    @velocity = options.velocity || new Vector 0, 0
+    @velocity = options.velocity || new Vector 0, 20.randSign()
     @color = options.color || '#ffffff'
     @name = options.name
     @path = new Path @position, 400, @color

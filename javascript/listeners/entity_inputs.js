@@ -26,42 +26,42 @@
       $mass.val(this.entity.mass);
       $mass.on('change', (function(_this) {
         return function() {
-          return _this.entity.mass = toInt($mass.val());
+          return _this.entity.mass = $mass.val().toInt();
         };
       })(this));
       $radius = $("#radius-" + name);
       $radius.val(this.entity.radius);
       $radius.on('change', (function(_this) {
         return function() {
-          return _this.entity.radius = toInt($radius.val());
+          return _this.entity.radius = $radius.val().toInt();
         };
       })(this));
       $posX = $("#position-x-" + name);
       $posX.val(this.entity.position.x);
       $posX.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.x = toInt($posX.val());
+          return _this.entity.position.x = $posX.val().toInt();
         };
       })(this));
       $posY = $("#position-y-" + name);
       $posY.val(this.entity.position.y);
       $posY.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.y = toInt($posY.val());
+          return _this.entity.position.y = $posY.val().toInt();
         };
       })(this));
       $velX = $("#velocity-x-" + name);
       $velX.val(this.entity.velocity.x);
       $velX.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.x = toInt($velX.val());
+          return _this.entity.velocity.x = $velX.val().toInt();
         };
       })(this));
       $velY = $("#velocity-y-" + name);
       $velY.val(this.entity.velocity.y);
       $velY.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.y = toInt($velY.val());
+          return _this.entity.velocity.y = $velY.val().toInt();
         };
       })(this));
       $color = $("#color-" + name);

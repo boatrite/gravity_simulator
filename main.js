@@ -8,13 +8,15 @@
 
   require(['javascript/line']);
 
-  require(['javascript/listeners/space_click']);
-
   require(['javascript/listeners/entity_inputs']);
 
   require(['javascript/listeners/g_input']);
 
   require(['javascript/listeners/play_button']);
+
+  require(['javascript/listeners/space_click']);
+
+  require(['javascript/monkeypatch']);
 
   require(['javascript/path']);
 
