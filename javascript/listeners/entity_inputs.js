@@ -6,55 +6,65 @@
     function EntityInputs(entity) {
       this.entity = entity;
       this.attachListeners = __bind(this.attachListeners, this);
+      this.addInputs = __bind(this.addInputs, this);
+      this.addInputs();
       this.attachListeners();
     }
 
+    EntityInputs.prototype.addInputs = function() {
+      var $entityControls, name, newEntityControl;
+      name = this.entity.name;
+      newEntityControl = "<div class='" + name + "'> <h1>" + (name.capitalize()) + "</h1> <div class='entity-prop'> Mass = <input id='mass-" + name + "' type='number' min='0'></input>kg </div> <div class='entity-prop'> Radius = <input id='radius-" + name + "' type='number' min='0'></input>px </div> <div class='entity-prop'> Position = ( <input id='position-x-" + name + "' type='number' min='0'></input>, <input id='position-y-" + name + "' type='number' min='0'></input> ) </div> <div class='entity-prop'> Velocity = ( <input id='velocity-x-" + name + "' type='number'></input>, <input id='velocity-y-" + name + "' type='number'></input> ) </div> <div class='entity-prop'> Color = <input id='color-" + name + "' type='color'></input> </div> </div>";
+      $entityControls = $('.entity-controls');
+      return $entityControls.append(newEntityControl);
+    };
+
     EntityInputs.prototype.attachListeners = function() {
-      var $color, $mass, $posX, $posY, $radius, $velX, $velY, entityName;
-      entityName = this.entity.name;
-      $mass = $("#mass-" + entityName);
+      var $color, $mass, $posX, $posY, $radius, $velX, $velY, name;
+      name = this.entity.name;
+      $mass = $("#mass-" + name);
       $mass.val(this.entity.mass);
       $mass.on('change', (function(_this) {
         return function() {
           return _this.entity.mass = toInt($mass.val());
         };
       })(this));
-      $radius = $("#radius-" + entityName);
+      $radius = $("#radius-" + name);
       $radius.val(this.entity.radius);
       $radius.on('change', (function(_this) {
         return function() {
           return _this.entity.radius = toInt($radius.val());
         };
       })(this));
-      $posX = $("#position-x-" + entityName);
+      $posX = $("#position-x-" + name);
       $posX.val(this.entity.position.x);
       $posX.on('change', (function(_this) {
         return function() {
           return _this.entity.position.x = toInt($posX.val());
         };
       })(this));
-      $posY = $("#position-y-" + entityName);
+      $posY = $("#position-y-" + name);
       $posY.val(this.entity.position.y);
       $posY.on('change', (function(_this) {
         return function() {
           return _this.entity.position.y = toInt($posY.val());
         };
       })(this));
-      $velX = $("#velocity-x-" + entityName);
+      $velX = $("#velocity-x-" + name);
       $velX.val(this.entity.velocity.x);
       $velX.on('change', (function(_this) {
         return function() {
           return _this.entity.velocity.x = toInt($velX.val());
         };
       })(this));
-      $velY = $("#velocity-y-" + entityName);
+      $velY = $("#velocity-y-" + name);
       $velY.val(this.entity.velocity.y);
       $velY.on('change', (function(_this) {
         return function() {
           return _this.entity.velocity.y = toInt($velY.val());
         };
       })(this));
-      $color = $("#color-" + entityName);
+      $color = $("#color-" + name);
       $color.val(this.entity.color);
       return $color.on('change', (function(_this) {
         return function() {

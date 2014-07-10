@@ -8,7 +8,7 @@
 
   require(['javascript/line']);
 
-  require(['javascript/listeners/add_entity_button']);
+  require(['javascript/listeners/space_click']);
 
   require(['javascript/listeners/entity_inputs']);
 

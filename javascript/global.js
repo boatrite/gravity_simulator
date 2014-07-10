@@ -8,4 +8,8 @@
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   };
 
+  String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+  };
+
 }).call(this);

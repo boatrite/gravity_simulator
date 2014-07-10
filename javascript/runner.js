@@ -33,7 +33,7 @@
       this.dt = 1000 / fps;
       this.intervalId = setInterval(this.tick, this.dt);
       new PlayButton(this);
-      new AddEntityButton(this.universe);
+      new SpaceClick(this.universe);
     }
 
     Runner.prototype.tick = function() {
