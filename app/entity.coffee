@@ -6,7 +6,7 @@ class @Entity
     @velocity = options.velocity || new Vector 0, 20.randSign()
     @color = options.color || '#ffffff'
     @name = options.name
-    @path = new Path @position, 400, @color
+    @path = new Path @position, 1000, @color
     new EntityInputs this
 
   update: (dt, entities) =>

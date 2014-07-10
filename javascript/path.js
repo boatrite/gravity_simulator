@@ -13,6 +13,8 @@
       this.shorten = __bind(this.shorten, this);
       this.overLengthLimit = __bind(this.overLengthLimit, this);
       this.lastPosition = __bind(this.lastPosition, this);
+      this.drawTaperedPath = __bind(this.drawTaperedPath, this);
+      this.drawUniformPath = __bind(this.drawUniformPath, this);
       this.draw = __bind(this.draw, this);
       this.continueTo = __bind(this.continueTo, this);
       this.positions = [start];
@@ -29,6 +31,23 @@
     };
 
     Path.prototype.draw = function(context) {
+      return this.drawUniformPath(context);
+    };
+
+    Path.prototype.drawUniformPath = function(context) {
+      var position, _i, _len, _ref;
+      context.beginPath();
+      _ref = this.positions;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        position = _ref[_i];
+        context.lineTo(position.x, position.y);
+      }
+      context.strokeStyle = this.color;
+      context.lineWidth = 2;
+      return context.stroke();
+    };
+
+    Path.prototype.drawTaperedPath = function(context) {
       var currWidth, i, position, _i, _len, _ref, _results;
       _ref = this.positions;
       _results = [];

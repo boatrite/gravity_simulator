@@ -13,7 +13,7 @@
       this.velocity = options.velocity || new Vector(0, 20..randSign());
       this.color = options.color || '#ffffff';
       this.name = options.name;
-      this.path = new Path(this.position, 400, this.color);
+      this.path = new Path(this.position, 1000, this.color);
       new EntityInputs(this);
     }
 

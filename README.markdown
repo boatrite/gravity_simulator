@@ -17,3 +17,4 @@ Future
 * When paused, show arrow indicating direction? Make it dragable to change velocity?
 * Predefined setups (sun earth moon, dual star, solar system?, 3 body, etc)
 * Predefined entities (our sun, earth, planets, black holes?, other types of stars?)
+* Optimize entity paths

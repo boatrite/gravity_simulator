@@ -13,6 +13,17 @@ class @Path
       @shorten()
 
   draw: (context) =>
+    @drawUniformPath context
+
+  drawUniformPath: (context) =>
+    context.beginPath()
+    for position in @positions
+      context.lineTo position.x, position.y
+    context.strokeStyle = @color
+    context.lineWidth = 2
+    context.stroke()
+
+  drawTaperedPath: (context) =>
     for position, i in @positions
       if @positions[i + 1]
         context.beginPath()
