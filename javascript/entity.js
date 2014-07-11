@@ -14,7 +14,7 @@
       this.color = options.color || '#ffffff';
       this.name = options.name;
       this.path = new Path(this.position, 1000, this.color);
-      new EntityInputs(this);
+      this.entityInputs = new EntityInputs(this);
     }
 
     Entity.prototype.update = function(dt, entities) {
@@ -29,7 +29,8 @@
         this.velocity = this.velocity.add(accel.times(dt));
         this.position = this.position.add(this.velocity.times(dt));
       }
-      return this.path.continueTo(this.position);
+      this.path.continueTo(this.position);
+      return this.entityInputs.update();
     };
 
     Entity.prototype.draw = function(context) {

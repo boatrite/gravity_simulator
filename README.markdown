@@ -10,7 +10,6 @@ Fixme
        greater force due to it's velocity. Am I missing a normalization somewhere?
 
 ToDo/Ideas
-* Position, velocity input fields should update with current values as simulation is run
 * Add label displaying force, dt, any other interesting values
 
 * Real values. Decide on a suitable scale (how many meters per pixel?)

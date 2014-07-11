@@ -7,7 +7,7 @@ class @Entity
     @color = options.color || '#ffffff'
     @name = options.name
     @path = new Path @position, 1000, @color
-    new EntityInputs this
+    @entityInputs = new EntityInputs this
 
   update: (dt, entities) =>
     for entity in entities when entity isnt this
@@ -16,6 +16,7 @@ class @Entity
       @velocity = @velocity.add accel.times(dt)
       @position = @position.add @velocity.times(dt)
     @path.continueTo @position
+    @entityInputs.update()
 
   draw: (context) =>
     new Circle(@position, @radius, @color).draw context

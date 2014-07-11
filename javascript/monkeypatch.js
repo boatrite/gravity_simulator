@@ -4,6 +4,10 @@
     return (Math.random() < 0.5 ? 1 : -1) * this;
   };
 
+  Number.prototype.floor = function() {
+    return +Math.round(this);
+  };
+
   String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
