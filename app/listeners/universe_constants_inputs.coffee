@@ -10,4 +10,4 @@ class @UniverseConstantsInputs
 
   attachListeners: =>
     @$G.on 'change', =>
-      Universe.G = @$G.val().toInt()
+      Universe.G = @$G.val().toNumber()

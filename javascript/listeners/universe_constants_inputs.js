@@ -18,7 +18,7 @@
     UniverseConstantsInputs.prototype.attachListeners = function() {
       return this.$G.on('change', (function(_this) {
         return function() {
-          return Universe.G = _this.$G.val().toInt();
+          return Universe.G = _this.$G.val().toNumber();
         };
       })(this));
     };

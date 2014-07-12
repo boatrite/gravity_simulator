@@ -30,32 +30,32 @@
     EntityInputs.prototype.attachListeners = function() {
       this.$mass.on('change', (function(_this) {
         return function() {
-          return _this.entity.mass = _this.$mass.val().toInt();
+          return _this.entity.mass = _this.$mass.val().toNumber();
         };
       })(this));
       this.$radius.on('change', (function(_this) {
         return function() {
-          return _this.entity.radius = _this.$radius.val().toInt();
+          return _this.entity.radius = _this.$radius.val().toNumber();
         };
       })(this));
       this.$posX.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.x = _this.$posX.val().toInt();
+          return _this.entity.position.x = _this.$posX.val().toNumber();
         };
       })(this));
       this.$posY.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.y = _this.$posY.val().toInt();
+          return _this.entity.position.y = _this.$posY.val().toNumber();
         };
       })(this));
       this.$velX.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.x = _this.$velX.val().toInt();
+          return _this.entity.velocity.x = _this.$velX.val().toNumber();
         };
       })(this));
       this.$velY.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.y = _this.$velY.val().toInt();
+          return _this.entity.velocity.y = _this.$velY.val().toNumber();
         };
       })(this));
       return this.$color.on('change', (function(_this) {

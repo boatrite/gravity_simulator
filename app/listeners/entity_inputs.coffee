@@ -43,17 +43,17 @@ class @EntityInputs
 
   attachListeners: =>
     @$mass.on 'change', =>
-      @entity.mass = @$mass.val().toInt()
+      @entity.mass = @$mass.val().toNumber()
     @$radius.on 'change', =>
-      @entity.radius = @$radius.val().toInt()
+      @entity.radius = @$radius.val().toNumber()
     @$posX.on 'change', =>
-      @entity.position.x = @$posX.val().toInt()
+      @entity.position.x = @$posX.val().toNumber()
     @$posY.on 'change', =>
-      @entity.position.y = @$posY.val().toInt()
+      @entity.position.y = @$posY.val().toNumber()
     @$velX.on 'change', =>
-      @entity.velocity.x = @$velX.val().toInt()
+      @entity.velocity.x = @$velX.val().toNumber()
     @$velY.on 'change', =>
-      @entity.velocity.y = @$velY.val().toInt()
+      @entity.velocity.y = @$velY.val().toNumber()
     @$color.on 'change', =>
       @entity.color = @$color.val()
 

@@ -12,8 +12,8 @@
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
 
-  String.prototype.toInt = function() {
-    return parseInt(this, 10);
+  String.prototype.toNumber = function() {
+    return parseFloat(this, 10);
   };
 
 }).call(this);
