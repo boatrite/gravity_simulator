@@ -1,11 +1,11 @@
-class @EntityInputs
+class @EntityPropertyElements
   constructor: (@entity) ->
     @name = @entity.name
-    @addInputs()
+    @addElements()
     @attachListeners()
 
-  addInputs: =>
-    newEntityControl = "
+  addElements: =>
+    entityElementsHTML = "
       <div class='#{@name}'>
         <h1>#{@name.capitalize()}</h1>
         <div class='entity-prop'>
@@ -29,10 +29,15 @@ class @EntityInputs
         <div class='entity-prop'>
           Color = <input id='color-#{@name}' type='color'></input>
         </div>
+        <div class='entity-prop'>
+          Net Force = (
+          <label id='net-force-x-#{@name}'></label>,
+          <label id='net-force-y-#{@name}'></label>
+          ) N
+        </div>
       </div>
     "
-    $entityControls = $('.entity-controls')
-    $entityControls.append newEntityControl
+    $('.entities-container').append entityElementsHTML
     @$mass = $("#mass-#{@name}")
     @$radius = $("#radius-#{@name}")
     @$posX = $("#position-x-#{@name}")
@@ -40,6 +45,8 @@ class @EntityInputs
     @$velX = $("#velocity-x-#{@name}")
     @$velY = $("#velocity-y-#{@name}")
     @$color = $("#color-#{@name}")
+    @$netForceX = $("#net-force-x-#{@name}")
+    @$netForceY = $("#net-force-y-#{@name}")
 
   attachListeners: =>
     @$mass.on 'change', =>
@@ -65,3 +72,5 @@ class @EntityInputs
     @$velX.val @entity.velocity.x.floor()
     @$velY.val @entity.velocity.y.floor()
     @$color.val @entity.color
+    @$netForceX.text @entity.netForce.x.floor()
+    @$netForceY.text @entity.netForce.y.floor()

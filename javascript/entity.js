@@ -10,27 +10,29 @@
       this.mass = options.mass || 1;
       this.radius = options.radius || 10;
       this.position = options.position || new Vector(0, 0);
-      this.velocity = options.velocity || new Vector(0, 20..randSign());
+      this.velocity = options.velocity || new Vector(0, 80..randSign());
       this.color = options.color || '#ffffff';
       this.name = options.name;
       this.path = new Path(this.position, 1000, this.color);
-      this.entityInputs = new EntityInputs(this);
+      this.entityPropertyElements = new EntityPropertyElements(this);
     }
 
     Entity.prototype.update = function(dt, entities) {
       var accel, entity, force, _i, _len;
+      this.netForce = new Vector(0, 0);
       for (_i = 0, _len = entities.length; _i < _len; _i++) {
         entity = entities[_i];
         if (!(entity !== this)) {
           continue;
         }
         force = this.calculateForce(entity);
-        accel = force.divide(this.mass);
-        this.velocity = this.velocity.add(accel.times(dt));
-        this.position = this.position.add(this.velocity.times(dt));
+        this.netForce = this.netForce.add(force);
       }
+      accel = this.netForce.divide(this.mass);
+      this.velocity = this.velocity.add(accel.times(dt));
+      this.position = this.position.add(this.velocity.times(dt));
       this.path.continueTo(this.position);
-      return this.entityInputs.update();
+      return this.entityPropertyElements.update();
     };
 
     Entity.prototype.draw = function(context) {

@@ -10,15 +10,15 @@
 
   require(['javascript/line']);
 
-  require(['javascript/listeners/entity_inputs']);
+  require(['javascript/dom/entity_property_elements']);
 
-  require(['javascript/listeners/simulator_controls']);
+  require(['javascript/dom/simulator_controls']);
 
-  require(['javascript/listeners/space_click_listener']);
+  require(['javascript/dom/space_click_listener']);
 
-  require(['javascript/listeners/space_dimension_inputs']);
+  require(['javascript/dom/space_dimension_inputs']);
 
-  require(['javascript/listeners/universe_constants_inputs']);
+  require(['javascript/dom/universe_constants_inputs']);
 
   require(['javascript/monkeypatch']);
 

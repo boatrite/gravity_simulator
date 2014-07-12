@@ -3,8 +3,11 @@ class @RunsSimulation
     space = document.getElementById 'space'
     @context = space.getContext '2d'
 
-    fps = 50
-    @dt = 1000 / fps # 1000 ms / s * 1 s / 50 frames = 20 ms / frame
+    fps = 30
+    @dtInSeconds = 1 / fps
+    $("#fps").text fps
+    $("#dt").text @dtInSeconds.toFixed(4)
+
     @play()
 
   toggleRunning: =>
@@ -20,10 +23,9 @@ class @RunsSimulation
     @running = false
 
   play: =>
-    @intervalId = setInterval @tick, @dt
+    dtInMilliseconds = @dtInSeconds * 1000
+    @intervalId = setInterval @tick, dtInMilliseconds
     @running = true
 
   tick: =>
-    dtInSeconds = @dt / 1000
-    @universe.tick dtInSeconds, @context
-
+    @universe.tick @dtInSeconds, @context

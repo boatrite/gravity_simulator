@@ -12,8 +12,10 @@
       this.toggleRunning = __bind(this.toggleRunning, this);
       space = document.getElementById('space');
       this.context = space.getContext('2d');
-      fps = 50;
-      this.dt = 1000 / fps;
+      fps = 30;
+      this.dtInSeconds = 1 / fps;
+      $("#fps").text(fps);
+      $("#dt").text(this.dtInSeconds.toFixed(4));
       this.play();
     }
 
@@ -31,14 +33,14 @@
     };
 
     RunsSimulation.prototype.play = function() {
-      this.intervalId = setInterval(this.tick, this.dt);
+      var dtInMilliseconds;
+      dtInMilliseconds = this.dtInSeconds * 1000;
+      this.intervalId = setInterval(this.tick, dtInMilliseconds);
       return this.running = true;
     };
 
     RunsSimulation.prototype.tick = function() {
-      var dtInSeconds;
-      dtInSeconds = this.dt / 1000;
-      return this.universe.tick(dtInSeconds, this.context);
+      return this.universe.tick(this.dtInSeconds, this.context);
     };
 
     return RunsSimulation;

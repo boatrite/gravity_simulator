@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Gravity</title>
-    <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
-  </head>
-  <body>
+<head>
+<title>Gravity</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/index.css">
+</head>
+<body>
 
-    <div class="simulator-controls">
-      <h1>Simulator Controls</h1>
+  <div class="simulator-controls">
+    <h1>Simulator Controls</h1>
+    <button id="play">Pause</button>
 
-      <button id="play">Pause</button>
-      <div class="space-dimensions">
-        Space dimensions
-        <input id="space-width" type="number" min="0"></input>
-        x
-        <input id="space-height" type="number" min="0"></input>
-      </div>
+    <div class="space-dimensions">
+      Space dimensions
+      <input id="space-width" type="number" min="0"></input>
+      x
+      <input id="space-height" type="number" min="0"></input>
     </div>
+    <div class="simulator-prop">
+      FPS = <label id="fps"></label>
+    </div>
+    <div class="simulator-prop">
+      &Delta;t = <label id="dt"></label>s
+    </div>
+  </div>
 
-    <div class="constants-control">
-      <h1>Universal Constants</h1>
+  <div class="universe-constants-inputs">
+    <h1>Universe Constants</h1>
+    <div class="universe-prop">
       G = <input id="G" type="number" min="0"></input>N(m/kg)^2
     </div>
+  </div>
 
-    <canvas id="space" width="1000" height="400"></canvas>
+  <canvas id="space" width="1000" height="400"></canvas>
 
-    <div class="entity-controls"></div>
+  <div class="entities-container"></div>
 
-    <!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. -->
-    <script data-main="main" src="lib/require.js"></script>
-  </body>
+<!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. -->
+<script data-main="main" src="lib/require.js"></script>
+</body>
 </html>

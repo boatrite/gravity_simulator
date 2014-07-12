@@ -22,7 +22,7 @@
         radius: 10,
         position: new Vector(width / 2 + width / 8, height / 2),
         velocity: new Vector(0, -100),
-        color: '#00fcff'
+        color: '#00ffce'
       }));
       return entities;
     };

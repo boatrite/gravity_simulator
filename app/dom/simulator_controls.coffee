@@ -1,6 +1,6 @@
 class @SimulatorControls
   constructor: (@runner) ->
-    @$playBtn = $('#play')
+    @$playBtn = $("#play")
     @attachListeners()
 
   attachListeners: =>
