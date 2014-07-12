@@ -3,15 +3,17 @@
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   this.Runner = (function() {
-    function Runner(canvas) {
+    function Runner() {
+      this.tick = __bind(this.tick, this);
       this.play = __bind(this.play, this);
       this.pause = __bind(this.pause, this);
-      this.tick = __bind(this.tick, this);
-      var earth, fps, height, sun, width;
-      width = canvas.width;
-      height = canvas.height;
-      this.context = canvas.getContext('2d');
-      this.universe = new Universe(width, height);
+      this.toggleRunning = __bind(this.toggleRunning, this);
+      var earth, fps, height, space, sun, width;
+      space = $('#space')[0];
+      width = space.width;
+      height = space.height;
+      this.context = space.getContext('2d');
+      this.universe = new Universe();
       sun = new Entity({
         name: 'sun',
         mass: 1000000,
@@ -32,23 +34,34 @@
       this.universe.addEntity(earth);
       fps = 50;
       this.dt = 1000 / fps;
-      this.intervalId = setInterval(this.tick, this.dt);
-      new PlayButton(this);
-      new SpaceClick(this.universe);
+      this.play();
+      this.playButton = new PlayButton(this);
     }
+
+    Runner.prototype.toggleRunning = function() {
+      if (this.running) {
+        this.playButton.pause();
+        return this.pause();
+      } else {
+        this.playButton.play();
+        return this.play();
+      }
+    };
+
+    Runner.prototype.pause = function() {
+      clearInterval(this.intervalId);
+      return this.running = false;
+    };
+
+    Runner.prototype.play = function() {
+      this.intervalId = setInterval(this.tick, this.dt);
+      return this.running = true;
+    };
 
     Runner.prototype.tick = function() {
       var dtInSeconds;
       dtInSeconds = this.dt / 1000;
       return this.universe.tick(dtInSeconds, this.context);
-    };
-
-    Runner.prototype.pause = function() {
-      return clearInterval(this.intervalId);
-    };
-
-    Runner.prototype.play = function() {
-      return this.intervalId = setInterval(this.tick, this.dt);
     };
 
     return Runner;

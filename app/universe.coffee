@@ -1,7 +1,7 @@
 class @Universe
   @G: 1 # Gravitational constant
 
-  constructor: (@width, @height) ->
+  constructor: ->
     @entities = []
     new GInput()
 
@@ -22,5 +22,6 @@ class @Universe
       entity.draw context
 
   drawBackground: (context) =>
+    space = $("#space")[0]
     context.fillStyle = 'black'
-    context.fillRect 0, 0, @width, @height
+    context.fillRect 0, 0, space.width, space.height

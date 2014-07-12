@@ -2,19 +2,19 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  this.SpaceClick = (function() {
-    function SpaceClick(universe) {
+  this.SpaceClickListener = (function() {
+    function SpaceClickListener(universe) {
       this.universe = universe;
       this.addEntity = __bind(this.addEntity, this);
       this.attachListeners = __bind(this.attachListeners, this);
       this.attachListeners();
     }
 
-    SpaceClick.prototype.attachListeners = function() {
+    SpaceClickListener.prototype.attachListeners = function() {
       return $("#space").on('click', this.addEntity);
     };
 
-    SpaceClick.prototype.addEntity = function(e) {
+    SpaceClickListener.prototype.addEntity = function(e) {
       var $space, color, entity, entityCount, name, position, x, y;
       entityCount = this.universe.entities.length;
       name = "entity-" + (entityCount + 1);
@@ -31,7 +31,7 @@
       return this.universe.addEntity(entity);
     };
 
-    return SpaceClick;
+    return SpaceClickListener;
 
   })();
 

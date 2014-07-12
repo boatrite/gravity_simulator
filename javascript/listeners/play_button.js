@@ -5,24 +5,23 @@
   this.PlayButton = (function() {
     function PlayButton(runner) {
       this.runner = runner;
+      this.play = __bind(this.play, this);
+      this.pause = __bind(this.pause, this);
       this.attachListeners = __bind(this.attachListeners, this);
+      this.$playBtn = $('#play');
       this.attachListeners();
     }
 
     PlayButton.prototype.attachListeners = function() {
-      var $playBtn;
-      $playBtn = $('#play');
-      return $playBtn.on('click', (function(_this) {
-        return function() {
-          if ($playBtn.html() === 'Play') {
-            _this.runner.play();
-            return $playBtn.html('Pause');
-          } else if ($playBtn.html() === 'Pause') {
-            _this.runner.pause();
-            return $playBtn.html('Play');
-          }
-        };
-      })(this));
+      return this.$playBtn.on('click', this.runner.toggleRunning);
+    };
+
+    PlayButton.prototype.pause = function() {
+      return this.$playBtn.html('Play');
+    };
+
+    PlayButton.prototype.play = function() {
+      return this.$playBtn.html('Pause');
     };
 
     return PlayButton;

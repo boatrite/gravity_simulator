@@ -1,10 +1,11 @@
 class @Runner
-  constructor: (canvas) ->
-    width = canvas.width
-    height = canvas.height
-    @context = canvas.getContext '2d'
+  constructor: ->
+    space = $('#space')[0]
+    width = space.width
+    height = space.height
+    @context = space.getContext '2d'
 
-    @universe = new Universe width, height
+    @universe = new Universe()
     sun = new Entity(
       name: 'sun',
       mass: 1000000,
@@ -27,16 +28,28 @@ class @Runner
 
     fps = 50
     @dt = 1000 / fps
+    @play()
+    @playButton = new PlayButton this
+
+  toggleRunning: =>
+    if @running
+      @playButton.pause()
+      @pause()
+    else
+      @playButton.play()
+      @play()
+
+  # private
+
+  pause: =>
+    clearInterval @intervalId
+    @running = false
+
+  play: =>
     @intervalId = setInterval @tick, @dt
-    new PlayButton this
-    new SpaceClick @universe
+    @running = true
 
   tick: =>
     dtInSeconds = @dt / 1000
     @universe.tick dtInSeconds, @context
 
-  pause: =>
-    clearInterval @intervalId
-
-  play: =>
-    @intervalId = setInterval @tick, @dt

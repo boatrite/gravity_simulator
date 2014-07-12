@@ -1,4 +1,4 @@
-class @SpaceClick
+class @SpaceClickListener
   constructor: (@universe) ->
     @attachListeners()
 

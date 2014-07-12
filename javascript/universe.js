@@ -5,9 +5,7 @@
   this.Universe = (function() {
     Universe.G = 1;
 
-    function Universe(width, height) {
-      this.width = width;
-      this.height = height;
+    function Universe() {
       this.drawBackground = __bind(this.drawBackground, this);
       this.drawAll = __bind(this.drawAll, this);
       this.updateAll = __bind(this.updateAll, this);
@@ -50,8 +48,10 @@
     };
 
     Universe.prototype.drawBackground = function(context) {
+      var space;
+      space = $("#space")[0];
       context.fillStyle = 'black';
-      return context.fillRect(0, 0, this.width, this.height);
+      return context.fillRect(0, 0, space.width, space.height);
     };
 
     return Universe;

@@ -14,7 +14,9 @@
 
   require(['javascript/listeners/play_button']);
 
-  require(['javascript/listeners/space_click']);
+  require(['javascript/listeners/space_click_listener']);
+
+  require(['javascript/listeners/space_dimension_inputs']);
 
   require(['javascript/monkeypatch']);
 
@@ -26,7 +28,9 @@
 
   require(['lib/jquery-2.1.1', 'javascript/runner'], function() {
     var runner;
-    return runner = new Runner(document.getElementById('space'));
+    runner = new Runner;
+    new SpaceClickListener(runner.universe);
+    return new SpaceDimensionInputs();
   });
 
 }).call(this);

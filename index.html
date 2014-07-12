@@ -2,15 +2,21 @@
 <html>
   <head>
     <title>Gravity</title>
-    <!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. -->
-    <script data-main="main" src="lib/require.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/index.css">
   </head>
   <body>
+
     <div class="simulator-controls">
       <h1>Simulator Controls</h1>
 
       <button id="play">Pause</button>
+      <div class="space-dimensions">
+        Space dimensions
+        <input id="space-width" type="number" min="0"></input>
+        x
+        <input id="space-height" type="number" min="0"></input>
+      </div>
+    </div>
 
     <div class="constants-control">
       <h1>Universal Constants</h1>
@@ -19,7 +25,9 @@
 
     <canvas id="space" width="1000" height="400"></canvas>
 
-    <div class="entity-controls">
-    </div>
+    <div class="entity-controls"></div>
+
+    <!-- data-main attribute tells require.js to load scripts/main.js after require.js loads. -->
+    <script data-main="main" src="lib/require.js"></script>
   </body>
 </html>
