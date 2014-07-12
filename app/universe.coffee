@@ -3,14 +3,19 @@ class @Universe
 
   constructor: ->
     @entities = []
-    new GInput()
 
   addEntity: (entity) =>
     @entities.push entity
 
+  addEntities: (entities) =>
+    for entity in entities
+      @addEntity entity
+
   tick: (dt, context) =>
     @updateAll dt
     @drawAll context
+
+  # private
 
   updateAll: (dt) =>
     for entity in @entities

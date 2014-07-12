@@ -10,13 +10,23 @@
       this.drawAll = __bind(this.drawAll, this);
       this.updateAll = __bind(this.updateAll, this);
       this.tick = __bind(this.tick, this);
+      this.addEntities = __bind(this.addEntities, this);
       this.addEntity = __bind(this.addEntity, this);
       this.entities = [];
-      new GInput();
     }
 
     Universe.prototype.addEntity = function(entity) {
       return this.entities.push(entity);
+    };
+
+    Universe.prototype.addEntities = function(entities) {
+      var entity, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = entities.length; _i < _len; _i++) {
+        entity = entities[_i];
+        _results.push(this.addEntity(entity));
+      }
+      return _results;
     };
 
     Universe.prototype.tick = function(dt, context) {

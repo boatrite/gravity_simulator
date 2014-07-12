@@ -10,14 +10,14 @@ Fixme
        greater force due to it's velocity. Am I missing a normalization somewhere?
 
 ToDo/Ideas
+* Basic styling
+* Better pause behavior
+  - Input listeners should force redraw so that changes can be seen when paused
+  - Make it so you can add entities while the thing is paused (and then change their values)
 * Add label displaying force, dt, any other interesting values
 
 * Real values. Decide on a suitable scale (how many meters per pixel?)
 
-* Change canvas height, width with inputs
-* Basic styling
-
-* Make it so you can add entities while the thing is paused (and then change their values)
 * Tails should start at edge of circle, not center
 
 Future

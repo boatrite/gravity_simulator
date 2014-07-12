@@ -1,6 +1,6 @@
 class @SpaceDimensionInputs
   constructor: ->
-    @space = $("#space")[0]
+    @space = document.getElementById 'space'
     @$spaceWidth = $("#space-width")
     @$spaceHeight = $("#space-height")
 

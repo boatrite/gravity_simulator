@@ -6,7 +6,7 @@
     function SpaceDimensionInputs() {
       this.attachListeners = __bind(this.attachListeners, this);
       this.setInitialValues = __bind(this.setInitialValues, this);
-      this.space = $("#space")[0];
+      this.space = document.getElementById('space');
       this.$spaceWidth = $("#space-width");
       this.$spaceHeight = $("#space-height");
       this.setInitialValues();

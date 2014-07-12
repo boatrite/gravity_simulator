@@ -2,6 +2,8 @@
 (function() {
   require(['javascript/circle']);
 
+  require(['javascript/configures_preset_entities']);
+
   require(['javascript/entity']);
 
   require(['javascript/global']);
@@ -10,13 +12,13 @@
 
   require(['javascript/listeners/entity_inputs']);
 
-  require(['javascript/listeners/g_input']);
-
   require(['javascript/listeners/play_button']);
 
   require(['javascript/listeners/space_click_listener']);
 
   require(['javascript/listeners/space_dimension_inputs']);
+
+  require(['javascript/listeners/universe_constants_inputs']);
 
   require(['javascript/monkeypatch']);
 
@@ -26,11 +28,15 @@
 
   require(['javascript/vector']);
 
-  require(['lib/jquery-2.1.1', 'javascript/runner'], function() {
-    var runner;
-    runner = new Runner;
+  require(['lib/jquery-2.1.1', 'javascript/runs_simulation'], function() {
+    var presetEntities, runner, universe;
+    presetEntities = ConfiguresPresetEntities.sunAndPlanet();
+    universe = new Universe();
+    universe.addEntities(presetEntities);
+    runner = new RunsSimulation(universe);
     new SpaceClickListener(runner.universe);
-    return new SpaceDimensionInputs();
+    new SpaceDimensionInputs();
+    return new UniverseConstantsInputs();
   });
 
 }).call(this);
