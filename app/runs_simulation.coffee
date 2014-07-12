@@ -4,16 +4,13 @@ class @RunsSimulation
     @context = space.getContext '2d'
 
     fps = 50
-    @dt = 1000 / fps
+    @dt = 1000 / fps # 1000 ms / s * 1 s / 50 frames = 20 ms / frame
     @play()
-    @playButton = new PlayButton this
 
   toggleRunning: =>
     if @running
-      @playButton.pause()
       @pause()
     else
-      @playButton.play()
       @play()
 
   # private

@@ -58,8 +58,8 @@ class @EntityInputs
       @entity.color = @$color.val()
 
   update: =>
-    @$mass.val @entity.mass.floor()
-    @$radius.val @entity.radius.floor()
+    @$mass.val @entity.mass
+    @$radius.val @entity.radius
     @$posX.val @entity.position.x.floor()
     @$posY.val @entity.position.y.floor()
     @$velX.val @entity.velocity.x.floor()

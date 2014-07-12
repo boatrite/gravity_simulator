@@ -66,8 +66,8 @@
     };
 
     EntityInputs.prototype.update = function() {
-      this.$mass.val(this.entity.mass.floor());
-      this.$radius.val(this.entity.radius.floor());
+      this.$mass.val(this.entity.mass);
+      this.$radius.val(this.entity.radius);
       this.$posX.val(this.entity.position.x.floor());
       this.$posY.val(this.entity.position.y.floor());
       this.$velX.val(this.entity.velocity.x.floor());

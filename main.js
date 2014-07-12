@@ -12,7 +12,7 @@
 
   require(['javascript/listeners/entity_inputs']);
 
-  require(['javascript/listeners/play_button']);
+  require(['javascript/listeners/simulator_controls']);
 
   require(['javascript/listeners/space_click_listener']);
 
@@ -34,7 +34,8 @@
     universe = new Universe();
     universe.addEntities(presetEntities);
     runner = new RunsSimulation(universe);
-    new SpaceClickListener(runner.universe);
+    new SimulatorControls(runner);
+    new SpaceClickListener(universe);
     new SpaceDimensionInputs();
     return new UniverseConstantsInputs();
   });

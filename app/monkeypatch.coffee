@@ -7,6 +7,7 @@ Number.prototype.floor = ->
 String.prototype.capitalize = ->
   @charAt(0).toUpperCase() + @slice(1)
 
+# TODO Rename to toNumber and use parseFloat instead
 String.prototype.toInt = ->
   parseInt this, 10
 

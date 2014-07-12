@@ -4,7 +4,7 @@ require ['javascript/entity']
 require ['javascript/global']
 require ['javascript/line']
 require ['javascript/listeners/entity_inputs']
-require ['javascript/listeners/play_button']
+require ['javascript/listeners/simulator_controls']
 require ['javascript/listeners/space_click_listener']
 require ['javascript/listeners/space_dimension_inputs']
 require ['javascript/listeners/universe_constants_inputs']
@@ -19,6 +19,7 @@ require ['lib/jquery-2.1.1', 'javascript/runs_simulation'], ->
 
   runner = new RunsSimulation universe
 
-  new SpaceClickListener runner.universe
+  new SimulatorControls runner
+  new SpaceClickListener universe
   new SpaceDimensionInputs()
   new UniverseConstantsInputs()

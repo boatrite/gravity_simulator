@@ -15,15 +15,12 @@
       fps = 50;
       this.dt = 1000 / fps;
       this.play();
-      this.playButton = new PlayButton(this);
     }
 
     RunsSimulation.prototype.toggleRunning = function() {
       if (this.running) {
-        this.playButton.pause();
         return this.pause();
       } else {
-        this.playButton.play();
         return this.play();
       }
     };

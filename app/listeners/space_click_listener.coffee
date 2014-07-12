@@ -1,17 +1,18 @@
 class @SpaceClickListener
   constructor: (@universe) ->
+    @$space = $("#space")
+
     @attachListeners()
 
   attachListeners: =>
-    $("#space").on 'click', @addEntity
+    @$space.on 'click', @addEntity
 
   addEntity: (e) =>
     entityCount = @universe.entities.length
     name = "entity-#{entityCount+1}"
 
-    $space = $("#space")
-    x = e.pageX - $space.position().left
-    y = e.pageY - $space.position().top
+    x = e.pageX - @$space.position().left
+    y = e.pageY - @$space.position().top
     position = new Vector x, y
 
     color = randomColor()

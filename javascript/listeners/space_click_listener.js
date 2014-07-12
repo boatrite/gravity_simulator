@@ -7,20 +7,20 @@
       this.universe = universe;
       this.addEntity = __bind(this.addEntity, this);
       this.attachListeners = __bind(this.attachListeners, this);
+      this.$space = $("#space");
       this.attachListeners();
     }
 
     SpaceClickListener.prototype.attachListeners = function() {
-      return $("#space").on('click', this.addEntity);
+      return this.$space.on('click', this.addEntity);
     };
 
     SpaceClickListener.prototype.addEntity = function(e) {
-      var $space, color, entity, entityCount, name, position, x, y;
+      var color, entity, entityCount, name, position, x, y;
       entityCount = this.universe.entities.length;
       name = "entity-" + (entityCount + 1);
-      $space = $("#space");
-      x = e.pageX - $space.position().left;
-      y = e.pageY - $space.position().top;
+      x = e.pageX - this.$space.position().left;
+      y = e.pageY - this.$space.position().top;
       position = new Vector(x, y);
       color = randomColor();
       entity = new Entity({
