@@ -10,7 +10,13 @@
 
   require(['javascript/line']);
 
-  require(['javascript/dom/entity_property_elements']);
+  require(['javascript/dom/entity_dom_elements']);
+
+  require(['javascript/dom/entity_container']);
+
+  require(['javascript/dom/entity_properties']);
+
+  require(['javascript/dom/entity_functions']);
 
   require(['javascript/dom/simulator_controls']);
 

@@ -11,7 +11,7 @@ class @Vector
     @add vector.times(-1)
 
   divide: (scalar) =>
-    alert "Can't divide by 0" if scalar == 0
+    console.log "Can't divide by 0" if scalar == 0
     @times 1/scalar
 
   normalize: =>

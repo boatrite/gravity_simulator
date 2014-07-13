@@ -29,7 +29,7 @@
 
     Vector.prototype.divide = function(scalar) {
       if (scalar === 0) {
-        alert("Can't divide by 0");
+        console.log("Can't divide by 0");
       }
       return this.times(1 / scalar);
     };

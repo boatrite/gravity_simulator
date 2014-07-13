@@ -7,6 +7,8 @@ Fixme
 * Larger mass input
 
 ToDo/Ideas
+* Add labels for entity acceleration
+* Copy entity link
 * Better pause behavior
   - Input listeners should force redraw so that changes can be seen when paused
   - Make it so you can add entities while the thing is paused (and then change their values)

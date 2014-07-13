@@ -14,7 +14,7 @@
       this.color = options.color || '#ffffff';
       this.name = options.name;
       this.path = new Path(this.position, 1000, this.color);
-      this.entityPropertyElements = new EntityPropertyElements(this);
+      this.entityDOMElements = new EntityDOMElements(this);
       this.markedForRemoval = false;
     }
 
@@ -33,7 +33,7 @@
       this.velocity = this.velocity.add(accel.times(dt));
       this.position = this.position.add(this.velocity.times(dt));
       this.path.continueTo(this.position);
-      return this.entityPropertyElements.update();
+      return this.entityDOMElements.update();
     };
 
     Entity.prototype.draw = function(context) {

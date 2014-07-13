@@ -10,7 +10,7 @@ class @Entity
     @color = options.color || '#ffffff'
     @name = options.name
     @path = new Path @position, 1000, @color
-    @entityPropertyElements = new EntityPropertyElements this
+    @entityDOMElements = new EntityDOMElements this
     @markedForRemoval = false
 
   update: (dt, entities) =>
@@ -23,7 +23,7 @@ class @Entity
     @position = @position.add @velocity.times(dt)
 
     @path.continueTo @position
-    @entityPropertyElements.update()
+    @entityDOMElements.update()
 
   draw: (context) =>
     new Circle(@position, @radius, @color).draw context
