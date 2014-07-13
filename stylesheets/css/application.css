@@ -1,0 +1,66 @@
+/* line 1, ../index.sass */
+.simulator-controls {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  *zoom: 1;
+  border: solid 2px #cccccc;
+  margin: 8px;
+  padding: 8px;
+  float: left;
+}
+/* line 8, ../index.sass */
+.simulator-controls button, .simulator-controls div {
+  float: left;
+}
+/* line 10, ../index.sass */
+.simulator-controls input {
+  width: 50px;
+}
+
+/* line 13, ../index.sass */
+.universe-constants-inputs {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  *zoom: 1;
+  border: solid 2px #cccccc;
+  margin: 8px;
+  padding: 8px;
+  float: left;
+}
+/* line 20, ../index.sass */
+.universe-constants-inputs input {
+  width: 50px;
+}
+
+/* line 23, ../index.sass */
+.entities-container {
+  clear: both;
+  float: left;
+}
+/* line 26, ../index.sass */
+.entities-container .entity {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: solid 2px #cccccc;
+  margin: 8px;
+  padding: 8px;
+}
+/* line 31, ../index.sass */
+.entities-container .entity input {
+  width: 50px;
+}
+/* line 33, ../index.sass */
+.entities-container .entity h1 {
+  margin: 0;
+}
+
+/* line 36, ../index.sass */
+#space {
+  float: left;
+  margin: 12px;
+}

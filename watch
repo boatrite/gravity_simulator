@@ -2,4 +2,5 @@
 
 coffee --output javascript --watch --compile app &
 coffee --watch --compile main.coffee &
-coffee --output javascript --watch --compile spec
+coffee --output javascript --watch --compile spec &
+compass watch . &

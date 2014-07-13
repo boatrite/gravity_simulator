@@ -29,7 +29,10 @@
   require(['javascript/vector']);
 
   require(['lib/jquery-2.1.1', 'javascript/runs_simulation'], function() {
-    var presetEntities, runner, universe;
+    var presetEntities, runner, space, universe;
+    space = document.getElementById('space');
+    space.height = 500;
+    space.width = 1000;
     presetEntities = ConfiguresPresetEntities.sunAndPlanet();
     universe = new Universe();
     universe.addEntities(presetEntities);

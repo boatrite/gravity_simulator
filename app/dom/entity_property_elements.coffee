@@ -6,7 +6,7 @@ class @EntityPropertyElements
 
   addElements: =>
     entityElementsHTML = "
-      <div class='#{@name}'>
+      <div class='entity #{@name}'>
         <h1>#{@name.capitalize()}</h1>
         <div class='entity-prop'>
           Mass = <input id='mass-#{@name}' type='number' min='0'></input>kg
