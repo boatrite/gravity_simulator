@@ -8,6 +8,7 @@ class @EntityPropertyElements
     entityElementsHTML = "
       <div class='entity #{@name}'>
         <h1>#{@name.capitalize()}</h1>
+        <a class='remove-entity #{@name}' href='#'>Remove this entity</a>
         <div class='entity-prop'>
           Mass = <input id='mass-#{@name}' type='number' min='0'></input>kg
         </div>
@@ -48,6 +49,8 @@ class @EntityPropertyElements
     @$netForceX = $("#net-force-x-#{@name}")
     @$netForceY = $("#net-force-y-#{@name}")
 
+    @$removeEntity = $("a.remove-entity.#{@name}")
+
   attachListeners: =>
     @$mass.on 'change', =>
       @entity.mass = @$mass.val().toNumber()
@@ -63,6 +66,9 @@ class @EntityPropertyElements
       @entity.velocity.y = @$velY.val().toNumber()
     @$color.on 'change', =>
       @entity.color = @$color.val()
+    @$removeEntity.on 'click', =>
+      @entity.markedForRemoval = true
+      $(".entity.#{@name}").remove()
 
   update: =>
     @$mass.val @entity.mass

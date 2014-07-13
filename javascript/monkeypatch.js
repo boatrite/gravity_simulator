@@ -16,4 +16,8 @@
     return parseFloat(this, 10);
   };
 
+  Array.prototype.reject = function(predicate) {
+    return _.reject(this, predicate);
+  };
+
 }).call(this);

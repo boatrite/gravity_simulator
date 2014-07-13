@@ -9,6 +9,7 @@
       this.drawBackground = __bind(this.drawBackground, this);
       this.drawAll = __bind(this.drawAll, this);
       this.updateAll = __bind(this.updateAll, this);
+      this.removeMarkedEntities = __bind(this.removeMarkedEntities, this);
       this.tick = __bind(this.tick, this);
       this.addEntities = __bind(this.addEntities, this);
       this.addEntity = __bind(this.addEntity, this);
@@ -30,8 +31,15 @@
     };
 
     Universe.prototype.tick = function(dt, context) {
+      this.removeMarkedEntities();
       this.updateAll(dt);
       return this.drawAll(context);
+    };
+
+    Universe.prototype.removeMarkedEntities = function() {
+      return this.entities = this.entities.reject(function(entity) {
+        return entity.markedForRemoval;
+      });
     };
 
     Universe.prototype.updateAll = function(dt) {

@@ -10,3 +10,5 @@ String.prototype.capitalize = ->
 String.prototype.toNumber = ->
   parseFloat this, 10
 
+Array.prototype.reject = (predicate) ->
+  _.reject this, predicate

@@ -15,7 +15,7 @@
 
     EntityPropertyElements.prototype.addElements = function() {
       var entityElementsHTML;
-      entityElementsHTML = "<div class='entity " + this.name + "'> <h1>" + (this.name.capitalize()) + "</h1> <div class='entity-prop'> Mass = <input id='mass-" + this.name + "' type='number' min='0'></input>kg </div> <div class='entity-prop'> Radius = <input id='radius-" + this.name + "' type='number' min='0'></input>px </div> <div class='entity-prop'> Position = ( <input id='position-x-" + this.name + "' type='number' min='0'></input>, <input id='position-y-" + this.name + "' type='number' min='0'></input> ) </div> <div class='entity-prop'> Velocity = ( <input id='velocity-x-" + this.name + "' type='number'></input>, <input id='velocity-y-" + this.name + "' type='number'></input> ) </div> <div class='entity-prop'> Color = <input id='color-" + this.name + "' type='color'></input> </div> <div class='entity-prop'> Net Force = ( <label id='net-force-x-" + this.name + "'></label>, <label id='net-force-y-" + this.name + "'></label> ) N </div> </div>";
+      entityElementsHTML = "<div class='entity " + this.name + "'> <h1>" + (this.name.capitalize()) + "</h1> <a class='remove-entity " + this.name + "' href='#'>Remove this entity</a> <div class='entity-prop'> Mass = <input id='mass-" + this.name + "' type='number' min='0'></input>kg </div> <div class='entity-prop'> Radius = <input id='radius-" + this.name + "' type='number' min='0'></input>px </div> <div class='entity-prop'> Position = ( <input id='position-x-" + this.name + "' type='number' min='0'></input>, <input id='position-y-" + this.name + "' type='number' min='0'></input> ) </div> <div class='entity-prop'> Velocity = ( <input id='velocity-x-" + this.name + "' type='number'></input>, <input id='velocity-y-" + this.name + "' type='number'></input> ) </div> <div class='entity-prop'> Color = <input id='color-" + this.name + "' type='color'></input> </div> <div class='entity-prop'> Net Force = ( <label id='net-force-x-" + this.name + "'></label>, <label id='net-force-y-" + this.name + "'></label> ) N </div> </div>";
       $('.entities-container').append(entityElementsHTML);
       this.$mass = $("#mass-" + this.name);
       this.$radius = $("#radius-" + this.name);
@@ -25,7 +25,8 @@
       this.$velY = $("#velocity-y-" + this.name);
       this.$color = $("#color-" + this.name);
       this.$netForceX = $("#net-force-x-" + this.name);
-      return this.$netForceY = $("#net-force-y-" + this.name);
+      this.$netForceY = $("#net-force-y-" + this.name);
+      return this.$removeEntity = $("a.remove-entity." + this.name);
     };
 
     EntityPropertyElements.prototype.attachListeners = function() {
@@ -59,9 +60,15 @@
           return _this.entity.velocity.y = _this.$velY.val().toNumber();
         };
       })(this));
-      return this.$color.on('change', (function(_this) {
+      this.$color.on('change', (function(_this) {
         return function() {
           return _this.entity.color = _this.$color.val();
+        };
+      })(this));
+      return this.$removeEntity.on('click', (function(_this) {
+        return function() {
+          _this.entity.markedForRemoval = true;
+          return $(".entity." + _this.name).remove();
         };
       })(this));
     };

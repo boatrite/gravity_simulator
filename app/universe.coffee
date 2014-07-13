@@ -12,10 +12,15 @@ class @Universe
       @addEntity entity
 
   tick: (dt, context) =>
+    @removeMarkedEntities()
     @updateAll dt
     @drawAll context
 
   # private
+
+  removeMarkedEntities: =>
+    @entities = @entities.reject (entity) ->
+      entity.markedForRemoval
 
   updateAll: (dt) =>
     for entity in @entities

@@ -15,6 +15,7 @@
       this.name = options.name;
       this.path = new Path(this.position, 1000, this.color);
       this.entityPropertyElements = new EntityPropertyElements(this);
+      this.markedForRemoval = false;
     }
 
     Entity.prototype.update = function(dt, entities) {

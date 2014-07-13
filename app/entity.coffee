@@ -11,6 +11,7 @@ class @Entity
     @name = options.name
     @path = new Path @position, 1000, @color
     @entityPropertyElements = new EntityPropertyElements this
+    @markedForRemoval = false
 
   update: (dt, entities) =>
     @netForce = new Vector 0, 0

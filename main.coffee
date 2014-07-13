@@ -12,7 +12,7 @@ require ['javascript/monkeypatch']
 require ['javascript/path']
 require ['javascript/universe']
 require ['javascript/vector']
-require ['lib/jquery-2.1.1', 'javascript/runs_simulation'], ->
+require ['lib/underscore', 'lib/jquery-2.1.1', 'javascript/runs_simulation'], ->
   space = document.getElementById 'space'
   space.height = 500
   space.width = 1000
