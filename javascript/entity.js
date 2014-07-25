@@ -4,17 +4,14 @@
 
   this.Entity = (function() {
     function Entity(options) {
-      this.calculateForce = __bind(this.calculateForce, this);
       this.drawPath = __bind(this.drawPath, this);
       this.drawBody = __bind(this.drawBody, this);
+      this.calculateForce = __bind(this.calculateForce, this);
+      this.calculateNetForce = __bind(this.calculateNetForce, this);
+      this.buildFromOptions = __bind(this.buildFromOptions, this);
       this.draw = __bind(this.draw, this);
       this.update = __bind(this.update, this);
-      this.mass = options.mass || 1;
-      this.radius = options.radius || 10;
-      this.position = options.position || new Vector(0, 0);
-      this.velocity = options.velocity || new Vector(0, 80..randSign());
-      this.color = options.color || '#ffffff';
-      this.name = options.name;
+      this.buildFromOptions(options);
       this.netForce = new Vector(0, 0);
       this.acceleration = new Vector(0, 0);
       this.path = new Path(this.position, 1000, this.color);
@@ -23,16 +20,7 @@
     }
 
     Entity.prototype.update = function(dt, entities) {
-      var entity, force, _i, _len;
-      this.netForce = new Vector(0, 0);
-      for (_i = 0, _len = entities.length; _i < _len; _i++) {
-        entity = entities[_i];
-        if (!(entity !== this)) {
-          continue;
-        }
-        force = this.calculateForce(entity);
-        this.netForce = this.netForce.add(force);
-      }
+      this.netForce = this.calculateNetForce(entities);
       this.acceleration = this.netForce.divide(this.mass);
       this.velocity = this.velocity.add(this.acceleration.times(dt));
       this.position = this.position.add(this.velocity.times(dt));
@@ -45,12 +33,27 @@
       return this.drawPath();
     };
 
-    Entity.prototype.drawBody = function() {
-      return new Circle(this.position, this.radius, this.color).draw();
+    Entity.prototype.buildFromOptions = function(options) {
+      this.mass = options.mass || 1;
+      this.radius = options.radius || 10;
+      this.position = options.position || new Vector(0, 0);
+      this.velocity = options.velocity || new Vector(0, 80..randSign());
+      this.color = options.color || '#ffffff';
+      return this.name = options.name;
     };
 
-    Entity.prototype.drawPath = function() {
-      return this.path.draw();
+    Entity.prototype.calculateNetForce = function(entities) {
+      var entity, force, netForce, _i, _len;
+      netForce = new Vector(0, 0);
+      for (_i = 0, _len = entities.length; _i < _len; _i++) {
+        entity = entities[_i];
+        if (!(entity !== this)) {
+          continue;
+        }
+        force = this.calculateForce(entity);
+        netForce = netForce.add(force);
+      }
+      return netForce;
     };
 
     Entity.prototype.calculateForce = function(otherEntity) {
@@ -60,6 +63,14 @@
       forceMagnitude = (-Universe.G * otherEntity.mass * this.mass) / (separationDistance * separationDistance);
       forceDirection = radialFromEntityToThis.normalize();
       return forceDirection.times(forceMagnitude);
+    };
+
+    Entity.prototype.drawBody = function() {
+      return new Circle(this.position, this.radius, this.color).draw();
+    };
+
+    Entity.prototype.drawPath = function() {
+      return this.path.draw();
     };
 
     return Entity;
