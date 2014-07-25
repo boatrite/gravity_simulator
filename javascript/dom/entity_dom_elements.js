@@ -5,14 +5,14 @@
   this.EntityDOMElements = (function() {
     function EntityDOMElements(entity) {
       this.entity = entity;
-      this.update = __bind(this.update, this);
+      this.draw = __bind(this.draw, this);
       new EntityContainer(this.entity);
       this.entityProperties = new EntityProperties(this.entity);
       new EntityFunctions(this.entity);
     }
 
-    EntityDOMElements.prototype.update = function() {
-      return this.entityProperties.update();
+    EntityDOMElements.prototype.draw = function() {
+      return this.entityProperties.draw();
     };
 
     return EntityDOMElements;

@@ -30,37 +30,37 @@
       }
     };
 
-    Path.prototype.draw = function(context) {
-      return this.drawUniformPath(context);
+    Path.prototype.draw = function() {
+      return this.drawUniformPath();
     };
 
-    Path.prototype.drawUniformPath = function(context) {
+    Path.prototype.drawUniformPath = function() {
       var position, _i, _len, _ref;
-      context.beginPath();
+      context().beginPath();
       _ref = this.positions;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         position = _ref[_i];
-        context.lineTo(position.x, position.y);
+        context().lineTo(position.x, position.y);
       }
-      context.strokeStyle = this.color;
-      context.lineWidth = 2;
-      return context.stroke();
+      context().strokeStyle = this.color;
+      context().lineWidth = 2;
+      return context().stroke();
     };
 
-    Path.prototype.drawTaperedPath = function(context) {
+    Path.prototype.drawTaperedPath = function() {
       var currWidth, i, position, _i, _len, _ref, _results;
       _ref = this.positions;
       _results = [];
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         position = _ref[i];
         if (this.positions[i + 1]) {
-          context.beginPath();
-          context.moveTo(position.x, position.y);
-          context.lineTo(this.positions[i + 1].x, this.positions[i + 1].y);
-          context.strokeStyle = this.color;
+          context().beginPath();
+          context().moveTo(position.x, position.y);
+          context().lineTo(this.positions[i + 1].x, this.positions[i + 1].y);
+          context().strokeStyle = this.color;
           currWidth = this.pathWidth * ((i + 1) / this.positions.length);
-          context.lineWidth = currWidth;
-          _results.push(context.stroke());
+          context().lineWidth = currWidth;
+          _results.push(context().stroke());
         } else {
           _results.push(void 0);
         }

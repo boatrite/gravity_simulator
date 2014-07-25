@@ -5,6 +5,8 @@
   this.Entity = (function() {
     function Entity(options) {
       this.calculateForce = __bind(this.calculateForce, this);
+      this.drawPath = __bind(this.drawPath, this);
+      this.drawBody = __bind(this.drawBody, this);
       this.draw = __bind(this.draw, this);
       this.update = __bind(this.update, this);
       this.mass = options.mass || 1;
@@ -13,13 +15,15 @@
       this.velocity = options.velocity || new Vector(0, 80..randSign());
       this.color = options.color || '#ffffff';
       this.name = options.name;
+      this.netForce = new Vector(0, 0);
+      this.acceleration = new Vector(0, 0);
       this.path = new Path(this.position, 1000, this.color);
-      this.entityDOMElements = new EntityDOMElements(this);
       this.markedForRemoval = false;
+      this.entityDOMElements = new EntityDOMElements(this);
     }
 
     Entity.prototype.update = function(dt, entities) {
-      var accel, entity, force, _i, _len;
+      var entity, force, _i, _len;
       this.netForce = new Vector(0, 0);
       for (_i = 0, _len = entities.length; _i < _len; _i++) {
         entity = entities[_i];
@@ -29,16 +33,24 @@
         force = this.calculateForce(entity);
         this.netForce = this.netForce.add(force);
       }
-      accel = this.netForce.divide(this.mass);
-      this.velocity = this.velocity.add(accel.times(dt));
+      this.acceleration = this.netForce.divide(this.mass);
+      this.velocity = this.velocity.add(this.acceleration.times(dt));
       this.position = this.position.add(this.velocity.times(dt));
-      this.path.continueTo(this.position);
-      return this.entityDOMElements.update();
+      return this.path.continueTo(this.position);
     };
 
-    Entity.prototype.draw = function(context) {
-      new Circle(this.position, this.radius, this.color).draw(context);
-      return this.path.draw(context);
+    Entity.prototype.draw = function() {
+      this.entityDOMElements.draw();
+      this.drawBody();
+      return this.drawPath();
+    };
+
+    Entity.prototype.drawBody = function() {
+      return new Circle(this.position, this.radius, this.color).draw();
+    };
+
+    Entity.prototype.drawPath = function() {
+      return this.path.draw();
     };
 
     Entity.prototype.calculateForce = function(otherEntity) {

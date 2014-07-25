@@ -5,8 +5,9 @@
   this.EntityProperties = (function() {
     function EntityProperties(entity) {
       this.entity = entity;
-      this.update = __bind(this.update, this);
+      this.draw = __bind(this.draw, this);
       this.attachListeners = __bind(this.attachListeners, this);
+      this.addAcceleration = __bind(this.addAcceleration, this);
       this.addNetForce = __bind(this.addNetForce, this);
       this.addColor = __bind(this.addColor, this);
       this.addVelocity = __bind(this.addVelocity, this);
@@ -20,10 +21,11 @@
     }
 
     EntityProperties.prototype.addElements = function() {
-      this.addMass();
-      this.addPosition();
-      this.addVelocity();
       this.addNetForce();
+      this.addAcceleration();
+      this.addVelocity();
+      this.addPosition();
+      this.addMass();
       this.addRadius();
       return this.addColor();
     };
@@ -73,45 +75,60 @@
       return this.$netForceY = $("#net-force-y-" + this.entity.name);
     };
 
+    EntityProperties.prototype.addAcceleration = function() {
+      var accelHTML;
+      accelHTML = "<div class='entity-prop'> Acceleration = ( <label id='accel-x-" + this.entity.name + "'></label>, <label id='accel-y-" + this.entity.name + "'></label> ) m / s^2 </div>";
+      this.$container.append(accelHTML);
+      this.$accelX = $("#accel-x-" + this.entity.name);
+      return this.$accelY = $("#accel-y-" + this.entity.name);
+    };
+
     EntityProperties.prototype.attachListeners = function() {
       this.$mass.on('change', (function(_this) {
         return function() {
-          return _this.entity.mass = _this.$mass.val().toNumber();
+          _this.entity.mass = _this.$mass.val().toNumber();
+          return forceRedraw();
         };
       })(this));
       this.$radius.on('change', (function(_this) {
         return function() {
-          return _this.entity.radius = _this.$radius.val().toNumber();
+          _this.entity.radius = _this.$radius.val().toNumber();
+          return forceRedraw();
         };
       })(this));
       this.$posX.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.x = _this.$posX.val().toNumber();
+          _this.entity.position.x = _this.$posX.val().toNumber();
+          return forceRedraw();
         };
       })(this));
       this.$posY.on('change', (function(_this) {
         return function() {
-          return _this.entity.position.y = _this.$posY.val().toNumber();
+          _this.entity.position.y = _this.$posY.val().toNumber();
+          return forceRedraw();
         };
       })(this));
       this.$velX.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.x = _this.$velX.val().toNumber();
+          _this.entity.velocity.x = _this.$velX.val().toNumber();
+          return forceRedraw();
         };
       })(this));
       this.$velY.on('change', (function(_this) {
         return function() {
-          return _this.entity.velocity.y = _this.$velY.val().toNumber();
+          _this.entity.velocity.y = _this.$velY.val().toNumber();
+          return forceRedraw();
         };
       })(this));
       return this.$color.on('change', (function(_this) {
         return function() {
-          return _this.entity.color = _this.$color.val();
+          _this.entity.color = _this.$color.val();
+          return forceRedraw();
         };
       })(this));
     };
 
-    EntityProperties.prototype.update = function() {
+    EntityProperties.prototype.draw = function() {
       this.$mass.val(this.entity.mass);
       this.$radius.val(this.entity.radius);
       this.$posX.val(this.entity.position.x.floor());
@@ -120,7 +137,9 @@
       this.$velY.val(this.entity.velocity.y.floor());
       this.$color.val(this.entity.color);
       this.$netForceX.text(this.entity.netForce.x.floor());
-      return this.$netForceY.text(this.entity.netForce.y.floor());
+      this.$netForceY.text(this.entity.netForce.y.floor());
+      this.$accelX.text(this.entity.acceleration.x.floor());
+      return this.$accelY.text(this.entity.acceleration.y.floor());
     };
 
     return EntityProperties;

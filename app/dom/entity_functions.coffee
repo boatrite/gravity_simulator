@@ -15,4 +15,4 @@ class @EntityFunctions
     @$removeEntity.on 'click', =>
       @entity.markedForRemoval = true
       @$container.remove()
-
+      forceRedraw()

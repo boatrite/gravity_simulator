@@ -6,8 +6,8 @@
     ConfiguresPresetEntities.sunAndPlanet = function() {
       var entities, height, width;
       entities = [];
-      width = $("#space").width();
-      height = $("#space").height();
+      width = $canvas().width();
+      height = $canvas().height();
       entities.push(new Entity({
         name: 'sun',
         mass: 1000000,

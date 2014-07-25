@@ -23,7 +23,8 @@
       return this.$removeEntity.on('click', (function(_this) {
         return function() {
           _this.entity.markedForRemoval = true;
-          return _this.$container.remove();
+          _this.$container.remove();
+          return forceRedraw();
         };
       })(this));
     };

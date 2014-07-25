@@ -7,9 +7,11 @@
 
     function Universe() {
       this.drawBackground = __bind(this.drawBackground, this);
-      this.drawAll = __bind(this.drawAll, this);
+      this.drawEntities = __bind(this.drawEntities, this);
       this.updateAll = __bind(this.updateAll, this);
       this.removeMarkedEntities = __bind(this.removeMarkedEntities, this);
+      this.forceRedraw = __bind(this.forceRedraw, this);
+      this.drawAll = __bind(this.drawAll, this);
       this.tick = __bind(this.tick, this);
       this.addEntities = __bind(this.addEntities, this);
       this.addEntity = __bind(this.addEntity, this);
@@ -30,10 +32,20 @@
       return _results;
     };
 
-    Universe.prototype.tick = function(dt, context) {
+    Universe.prototype.tick = function(dt) {
       this.removeMarkedEntities();
       this.updateAll(dt);
-      return this.drawAll(context);
+      return this.drawAll();
+    };
+
+    Universe.prototype.drawAll = function() {
+      this.drawBackground();
+      return this.drawEntities();
+    };
+
+    Universe.prototype.forceRedraw = function() {
+      this.removeMarkedEntities();
+      return this.drawAll();
     };
 
     Universe.prototype.removeMarkedEntities = function() {
@@ -53,23 +65,20 @@
       return _results;
     };
 
-    Universe.prototype.drawAll = function(context) {
+    Universe.prototype.drawEntities = function() {
       var entity, _i, _len, _ref, _results;
-      this.drawBackground(context);
       _ref = this.entities;
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         entity = _ref[_i];
-        _results.push(entity.draw(context));
+        _results.push(entity.draw());
       }
       return _results;
     };
 
-    Universe.prototype.drawBackground = function(context) {
-      var space;
-      space = $("#space")[0];
-      context.fillStyle = 'black';
-      return context.fillRect(0, 0, space.width, space.height);
+    Universe.prototype.drawBackground = function() {
+      context().fillStyle = 'black';
+      return context().fillRect(0, 0, canvas().width, canvas().height);
     };
 
     return Universe;

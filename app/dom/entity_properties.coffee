@@ -5,10 +5,11 @@ class @EntityProperties
     @attachListeners()
 
   addElements: =>
-    @addMass()
-    @addPosition()
-    @addVelocity()
     @addNetForce()
+    @addAcceleration()
+    @addVelocity()
+    @addPosition()
+    @addMass()
     @addRadius()
     @addColor()
 
@@ -78,23 +79,43 @@ class @EntityProperties
     @$netForceX = $("#net-force-x-#{@entity.name}")
     @$netForceY = $("#net-force-y-#{@entity.name}")
 
+  addAcceleration: =>
+    accelHTML = "
+      <div class='entity-prop'>
+        Acceleration = (
+        <label id='accel-x-#{@entity.name}'></label>,
+        <label id='accel-y-#{@entity.name}'></label>
+        ) m / s^2
+      </div>
+    "
+    @$container.append accelHTML
+    @$accelX = $("#accel-x-#{@entity.name}")
+    @$accelY = $("#accel-y-#{@entity.name}")
+
   attachListeners: =>
     @$mass.on 'change', =>
       @entity.mass = @$mass.val().toNumber()
+      forceRedraw()
     @$radius.on 'change', =>
       @entity.radius = @$radius.val().toNumber()
+      forceRedraw()
     @$posX.on 'change', =>
       @entity.position.x = @$posX.val().toNumber()
+      forceRedraw()
     @$posY.on 'change', =>
       @entity.position.y = @$posY.val().toNumber()
+      forceRedraw()
     @$velX.on 'change', =>
       @entity.velocity.x = @$velX.val().toNumber()
+      forceRedraw()
     @$velY.on 'change', =>
       @entity.velocity.y = @$velY.val().toNumber()
+      forceRedraw()
     @$color.on 'change', =>
       @entity.color = @$color.val()
+      forceRedraw()
 
-  update: =>
+  draw: =>
     @$mass.val @entity.mass
     @$radius.val @entity.radius
     @$posX.val @entity.position.x.floor()
@@ -104,3 +125,5 @@ class @EntityProperties
     @$color.val @entity.color
     @$netForceX.text @entity.netForce.x.floor()
     @$netForceY.text @entity.netForce.y.floor()
+    @$accelX.text @entity.acceleration.x.floor()
+    @$accelY.text @entity.acceleration.y.floor()

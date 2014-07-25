@@ -10,11 +10,11 @@
       this.draw = __bind(this.draw, this);
     }
 
-    Circle.prototype.draw = function(context) {
-      context.beginPath();
-      context.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI, false);
-      context.fillStyle = this.color;
-      return context.fill();
+    Circle.prototype.draw = function() {
+      context().beginPath();
+      context().arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI, false);
+      context().fillStyle = this.color;
+      return context().fill();
     };
 
     return Circle;

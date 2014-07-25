@@ -9,27 +9,34 @@ class @Entity
     @velocity = options.velocity || new Vector 0, 80.randSign()
     @color = options.color || '#ffffff'
     @name = options.name
+    @netForce = new Vector 0, 0
+    @acceleration = new Vector 0, 0
     @path = new Path @position, 1000, @color
-    @entityDOMElements = new EntityDOMElements this
     @markedForRemoval = false
+    @entityDOMElements = new EntityDOMElements this
 
   update: (dt, entities) =>
     @netForce = new Vector 0, 0
     for entity in entities when entity isnt this
       force = @calculateForce entity
       @netForce = @netForce.add force
-    accel = @netForce.divide @mass
-    @velocity = @velocity.add accel.times(dt)
+    @acceleration = @netForce.divide @mass
+    @velocity = @velocity.add @acceleration.times(dt)
     @position = @position.add @velocity.times(dt)
-
     @path.continueTo @position
-    @entityDOMElements.update()
 
-  draw: (context) =>
-    new Circle(@position, @radius, @color).draw context
-    @path.draw context
+  draw: =>
+    @entityDOMElements.draw()
+    @drawBody()
+    @drawPath()
 
   # private
+
+  drawBody: =>
+    new Circle(@position, @radius, @color).draw()
+
+  drawPath: =>
+    @path.draw()
 
   # TODO Put under test
   calculateForce: (otherEntity) =>

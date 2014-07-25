@@ -11,10 +11,18 @@ class @Universe
     for entity in entities
       @addEntity entity
 
-  tick: (dt, context) =>
+  tick: (dt) =>
     @removeMarkedEntities()
     @updateAll dt
-    @drawAll context
+    @drawAll()
+
+  drawAll: =>
+    @drawBackground()
+    @drawEntities()
+
+  forceRedraw: =>
+    @removeMarkedEntities()
+    @drawAll()
 
   # private
 
@@ -26,12 +34,10 @@ class @Universe
     for entity in @entities
       entity.update dt, @entities
 
-  drawAll: (context) =>
-    @drawBackground context
+  drawEntities: =>
     for entity in @entities
-      entity.draw context
+      entity.draw()
 
-  drawBackground: (context) =>
-    space = $("#space")[0]
-    context.fillStyle = 'black'
-    context.fillRect 0, 0, space.width, space.height
+  drawBackground: =>
+    context().fillStyle = 'black'
+    context().fillRect 0, 0, canvas().width, canvas().height

@@ -12,27 +12,27 @@ class @Path
     if @overLengthLimit()
       @shorten()
 
-  draw: (context) =>
-    @drawUniformPath context
+  draw: =>
+    @drawUniformPath()
 
-  drawUniformPath: (context) =>
-    context.beginPath()
+  drawUniformPath: =>
+    context().beginPath()
     for position in @positions
-      context.lineTo position.x, position.y
-    context.strokeStyle = @color
-    context.lineWidth = 2
-    context.stroke()
+      context().lineTo position.x, position.y
+    context().strokeStyle = @color
+    context().lineWidth = 2
+    context().stroke()
 
-  drawTaperedPath: (context) =>
+  drawTaperedPath: =>
     for position, i in @positions
       if @positions[i + 1]
-        context.beginPath()
-        context.moveTo position.x, position.y
-        context.lineTo @positions[i+1].x, @positions[i+1].y
-        context.strokeStyle = @color
+        context().beginPath()
+        context().moveTo position.x, position.y
+        context().lineTo @positions[i+1].x, @positions[i+1].y
+        context().strokeStyle = @color
         currWidth = @pathWidth * ((i+1) / @positions.length)
-        context.lineWidth = currWidth
-        context.stroke()
+        context().lineWidth = currWidth
+        context().stroke()
 
   # private
 

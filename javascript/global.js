@@ -4,4 +4,20 @@
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   };
 
+  window.canvas = function() {
+    return document.getElementById('space');
+  };
+
+  window.$canvas = function() {
+    return $(canvas());
+  };
+
+  window.context = function() {
+    return canvas().getContext('2d');
+  };
+
+  window.forceRedraw = function() {
+    return $canvas().trigger('forceRedraw');
+  };
+
 }).call(this);

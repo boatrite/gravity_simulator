@@ -6,7 +6,6 @@
     function SpaceDimensionInputs() {
       this.attachListeners = __bind(this.attachListeners, this);
       this.setInitialValues = __bind(this.setInitialValues, this);
-      this.space = document.getElementById('space');
       this.$spaceWidth = $("#space-width");
       this.$spaceHeight = $("#space-height");
       this.setInitialValues();
@@ -14,19 +13,19 @@
     }
 
     SpaceDimensionInputs.prototype.setInitialValues = function() {
-      this.$spaceWidth.val(this.space.width);
-      return this.$spaceHeight.val(this.space.height);
+      this.$spaceWidth.val(canvas().width);
+      return this.$spaceHeight.val(canvas().height);
     };
 
     SpaceDimensionInputs.prototype.attachListeners = function() {
       this.$spaceWidth.on('change', (function(_this) {
         return function() {
-          return _this.space.width = _this.$spaceWidth.val();
+          return canvas().width = _this.$spaceWidth.val();
         };
       })(this));
       return this.$spaceHeight.on('change', (function(_this) {
         return function() {
-          return _this.space.height = _this.$spaceHeight.val();
+          return canvas().height = _this.$spaceHeight.val();
         };
       })(this));
     };

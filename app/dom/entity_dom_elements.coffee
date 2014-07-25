@@ -4,5 +4,5 @@ class @EntityDOMElements
     @entityProperties = new EntityProperties @entity
     new EntityFunctions @entity
 
-  update: =>
-    @entityProperties.update()
+  draw: =>
+    @entityProperties.draw()

@@ -1,19 +1,16 @@
 class @SpaceDimensionInputs
   constructor: ->
-    @space = document.getElementById 'space'
     @$spaceWidth = $("#space-width")
     @$spaceHeight = $("#space-height")
-
     @setInitialValues()
     @attachListeners()
 
   setInitialValues: =>
-    @$spaceWidth.val @space.width
-    @$spaceHeight.val @space.height
+    @$spaceWidth.val canvas().width
+    @$spaceHeight.val canvas().height
 
   attachListeners: =>
     @$spaceWidth.on 'change', =>
-      @space.width = @$spaceWidth.val()
-
+      canvas().width = @$spaceWidth.val()
     @$spaceHeight.on 'change', =>
-      @space.height = @$spaceHeight.val()
+      canvas().height = @$spaceHeight.val()

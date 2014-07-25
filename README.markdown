@@ -4,17 +4,11 @@ Fixme
 * Separate draw updates from logic updates
 * Optimize force calculations (benchmark first)
 * Tails should start at edge of circle, not center
-* Larger mass input
 
 ToDo/Ideas
-* Add labels for entity acceleration
 * Copy entity link
-* Better pause behavior
-  - Input listeners should force redraw so that changes can be seen when paused
-  - Make it so you can add entities while the thing is paused (and then change their values)
 * Real values. Decide on a suitable scale (how many meters per pixel?)
-* Should probably start paused
-
+* Should probably start paused except when debugging
 
 Future
 * Benchmark and try optimize entity paths (not as important as force optimization)

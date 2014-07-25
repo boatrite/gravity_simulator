@@ -1,18 +1,16 @@
 class @SpaceClickListener
   constructor: (@universe) ->
-    @$space = $("#space")
-
     @attachListeners()
 
   attachListeners: =>
-    @$space.on 'click', @addEntity
+    $canvas().on 'click', @addEntity
 
   addEntity: (e) =>
     entityCount = @universe.entities.length
     name = "entity-#{entityCount+1}"
 
-    x = e.pageX - @$space.position().left
-    y = e.pageY - @$space.position().top
+    x = e.pageX - $canvas().position().left
+    y = e.pageY - $canvas().position().top
     position = new Vector x, y
 
     color = randomColor()
@@ -23,4 +21,4 @@ class @SpaceClickListener
       color: color
     )
     @universe.addEntity entity
-
+    forceRedraw()
