@@ -1,11 +1,11 @@
-Gravity simulator.
+Gravity simulator
 
 Fixme
-* Separate draw updates from logic updates
 * Tails should start at edge of circle, not center
 
 ToDo/Ideas
 * Copy entity link
+* Better layout
 * Drag to move entities
 * Merge entities that collide? (Instead of having them shoot off to infinity)
 * Should probably start paused except when debugging

@@ -1,34 +1,39 @@
 class @RunsSimulation
   constructor: (@universe) ->
-    @setDeltaT()
-    @setLabelText()
+    @step = 1/60
     @play()
 
   toggleRunning: =>
-    if @running()
+    if @running
       @pause()
     else
       @play()
 
   # private
 
-  setDeltaT: =>
-    @fps = 30
-    @dtInSeconds = 1 / @fps
+  tick: =>
+    @universe.removeMarkedEntities()
+    now = @timestamp()
+    @dt = @dt + Math.min(1, (now - @last) / 1000)
+    while(@dt > @step)
+      @dt = @dt - @step
+      @universe.updateAll @step
+    @universe.drawAll()
+    @last = now
+    if @running
+      requestAnimationFrame(@tick)
 
-  setLabelText: =>
-    $("#fps").text @fps
-    $("#dt").text @dtInSeconds.toFixed(4)
+  timestamp: =>
+    if window.performance && window.performance.now
+      window.performance.now()
+    else
+      new Date().getTime()
 
   play: =>
-    dtInMilliseconds = @dtInSeconds * 1000
-    @intervalId = setInterval @tick, dtInMilliseconds
+    @running = true
+    @dt = 0
+    @last = @timestamp()
+    requestAnimationFrame(@tick)
 
   pause: =>
-    @intervalId = clearInterval @intervalId
-
-  running: =>
-    !!@intervalId
-
-  tick: =>
-    @universe.tick @dtInSeconds
+    @running = false

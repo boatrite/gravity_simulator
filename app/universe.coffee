@@ -11,11 +11,6 @@ class @Universe
     for entity in entities
       @addEntity entity
 
-  tick: (dt) =>
-    @removeMarkedEntities()
-    @updateAll dt
-    @drawAll()
-
   drawAll: =>
     @drawBackground()
     @drawEntities()
@@ -24,16 +19,16 @@ class @Universe
     @removeMarkedEntities()
     @drawAll()
 
+  updateAll: (dt) =>
+    net_forces = @calculateNetForces()
+    for entity in @entities
+      entity.update dt, net_forces[entity.name]
+
   # private
 
   removeMarkedEntities: =>
     @entities = @entities.reject (entity) ->
       entity.markedForRemoval
-
-  updateAll: (dt) =>
-    net_forces = @calculateNetForces()
-    for entity in @entities
-      entity.update dt, net_forces[entity.name]
 
   calculateNetForces: =>
     net_forces = {}

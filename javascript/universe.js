@@ -10,11 +10,10 @@
       this.drawEntities = __bind(this.drawEntities, this);
       this.force_on_entity_by_entity = __bind(this.force_on_entity_by_entity, this);
       this.calculateNetForces = __bind(this.calculateNetForces, this);
-      this.updateAll = __bind(this.updateAll, this);
       this.removeMarkedEntities = __bind(this.removeMarkedEntities, this);
+      this.updateAll = __bind(this.updateAll, this);
       this.forceRedraw = __bind(this.forceRedraw, this);
       this.drawAll = __bind(this.drawAll, this);
-      this.tick = __bind(this.tick, this);
       this.addEntities = __bind(this.addEntities, this);
       this.addEntity = __bind(this.addEntity, this);
       this.entities = [];
@@ -34,12 +33,6 @@
       return _results;
     };
 
-    Universe.prototype.tick = function(dt) {
-      this.removeMarkedEntities();
-      this.updateAll(dt);
-      return this.drawAll();
-    };
-
     Universe.prototype.drawAll = function() {
       this.drawBackground();
       return this.drawEntities();
@@ -48,12 +41,6 @@
     Universe.prototype.forceRedraw = function() {
       this.removeMarkedEntities();
       return this.drawAll();
-    };
-
-    Universe.prototype.removeMarkedEntities = function() {
-      return this.entities = this.entities.reject(function(entity) {
-        return entity.markedForRemoval;
-      });
     };
 
     Universe.prototype.updateAll = function(dt) {
@@ -66,6 +53,12 @@
         _results.push(entity.update(dt, net_forces[entity.name]));
       }
       return _results;
+    };
+
+    Universe.prototype.removeMarkedEntities = function() {
+      return this.entities = this.entities.reject(function(entity) {
+        return entity.markedForRemoval;
+      });
     };
 
     Universe.prototype.calculateNetForces = function() {

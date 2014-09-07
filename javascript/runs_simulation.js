@@ -5,52 +5,56 @@
   this.RunsSimulation = (function() {
     function RunsSimulation(universe) {
       this.universe = universe;
-      this.tick = __bind(this.tick, this);
-      this.running = __bind(this.running, this);
       this.pause = __bind(this.pause, this);
       this.play = __bind(this.play, this);
-      this.setLabelText = __bind(this.setLabelText, this);
-      this.setDeltaT = __bind(this.setDeltaT, this);
+      this.timestamp = __bind(this.timestamp, this);
+      this.tick = __bind(this.tick, this);
       this.toggleRunning = __bind(this.toggleRunning, this);
-      this.setDeltaT();
-      this.setLabelText();
+      this.step = 1 / 60;
       this.play();
     }
 
     RunsSimulation.prototype.toggleRunning = function() {
-      if (this.running()) {
+      if (this.running) {
         return this.pause();
       } else {
         return this.play();
       }
     };
 
-    RunsSimulation.prototype.setDeltaT = function() {
-      this.fps = 30;
-      return this.dtInSeconds = 1 / this.fps;
+    RunsSimulation.prototype.tick = function() {
+      var now;
+      this.universe.removeMarkedEntities();
+      now = this.timestamp();
+      this.dt = this.dt + Math.min(1, (now - this.last) / 1000);
+      while (this.dt > this.step) {
+        this.dt = this.dt - this.step;
+        this.universe.updateAll(this.step);
+      }
+      this.universe.drawAll();
+      this.last = now;
+      if (this.running) {
+        return requestAnimationFrame(this.tick);
+      }
     };
 
-    RunsSimulation.prototype.setLabelText = function() {
-      $("#fps").text(this.fps);
-      return $("#dt").text(this.dtInSeconds.toFixed(4));
+    RunsSimulation.prototype.timestamp = function() {
+      if (window.performance && window.performance.now) {
+        return window.performance.now();
+      } else {
+        return new Date().getTime();
+      }
     };
 
     RunsSimulation.prototype.play = function() {
-      var dtInMilliseconds;
-      dtInMilliseconds = this.dtInSeconds * 1000;
-      return this.intervalId = setInterval(this.tick, dtInMilliseconds);
+      this.running = true;
+      this.dt = 0;
+      this.last = this.timestamp();
+      return requestAnimationFrame(this.tick);
     };
 
     RunsSimulation.prototype.pause = function() {
-      return this.intervalId = clearInterval(this.intervalId);
-    };
-
-    RunsSimulation.prototype.running = function() {
-      return !!this.intervalId;
-    };
-
-    RunsSimulation.prototype.tick = function() {
-      return this.universe.tick(this.dtInSeconds);
+      return this.running = false;
     };
 
     return RunsSimulation;
