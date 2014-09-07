@@ -2,8 +2,6 @@ Gravity simulator.
 
 Fixme
 * Separate draw updates from logic updates
-* Optimize force calculations (benchmark first)
-  - 4 bodies has noticable slowdown
 * Tails should start at edge of circle, not center
 
 ToDo/Ideas

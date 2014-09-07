@@ -8,6 +8,8 @@
     function Universe() {
       this.drawBackground = __bind(this.drawBackground, this);
       this.drawEntities = __bind(this.drawEntities, this);
+      this.force_on_entity_by_entity = __bind(this.force_on_entity_by_entity, this);
+      this.calculateNetForces = __bind(this.calculateNetForces, this);
       this.updateAll = __bind(this.updateAll, this);
       this.removeMarkedEntities = __bind(this.removeMarkedEntities, this);
       this.forceRedraw = __bind(this.forceRedraw, this);
@@ -55,14 +57,44 @@
     };
 
     Universe.prototype.updateAll = function(dt) {
-      var entity, _i, _len, _ref, _results;
+      var entity, net_forces, _i, _len, _ref, _results;
+      net_forces = this.calculateNetForces();
       _ref = this.entities;
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         entity = _ref[_i];
-        _results.push(entity.update(dt, this.entities));
+        _results.push(entity.update(dt, net_forces[entity.name]));
       }
       return _results;
+    };
+
+    Universe.prototype.calculateNetForces = function() {
+      var entity, entity_one, entity_two, force_on_one_by_two, net_forces, x, y, _i, _j, _k, _len, _ref, _ref1, _ref2, _ref3;
+      net_forces = {};
+      _ref = this.entities;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        entity = _ref[_i];
+        net_forces[entity.name] = new Vector(0, 0);
+      }
+      for (x = _j = 0, _ref1 = this.entities.length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; x = 0 <= _ref1 ? ++_j : --_j) {
+        entity_one = this.entities[x];
+        for (y = _k = _ref2 = x + 1, _ref3 = this.entities.length; _ref2 <= _ref3 ? _k < _ref3 : _k > _ref3; y = _ref2 <= _ref3 ? ++_k : --_k) {
+          entity_two = this.entities[y];
+          force_on_one_by_two = this.force_on_entity_by_entity(entity_one, entity_two);
+          net_forces[entity_one.name] = net_forces[entity_one.name].add(force_on_one_by_two);
+          net_forces[entity_two.name] = net_forces[entity_two.name].add(force_on_one_by_two.times(-1));
+        }
+      }
+      return net_forces;
+    };
+
+    Universe.prototype.force_on_entity_by_entity = function(entityOne, entityTwo) {
+      var forceDirection, forceMagnitude, radialFromTwoToOne, separationDistance;
+      radialFromTwoToOne = entityOne.position.subtract(entityTwo.position);
+      separationDistance = radialFromTwoToOne.length();
+      forceMagnitude = (-Universe.G * entityTwo.mass * entityOne.mass) / (separationDistance * separationDistance);
+      forceDirection = radialFromTwoToOne.normalize();
+      return forceDirection.times(forceMagnitude);
     };
 
     Universe.prototype.drawEntities = function() {
