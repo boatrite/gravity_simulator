@@ -12,7 +12,7 @@
       this.buildFromOptions(options);
       this.acceleration = new Vector(0, 0);
       this.netForce = new Vector(0, 0);
-      this.path = new Path(this.position, 1000, this.color);
+      this.path = new Path(this.position, Path.NO_PATH_LENGTH_LIMIT, this.color);
       this.markedForRemoval = false;
       this.entityDOMElements = new EntityDOMElements(this);
     }

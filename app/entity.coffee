@@ -3,7 +3,7 @@ class @Entity
     @buildFromOptions options
     @acceleration = new Vector 0, 0
     @netForce = new Vector 0, 0
-    @path = new Path @position, 1000, @color
+    @path = new Path @position, Path.NO_PATH_LENGTH_LIMIT, @color
     @markedForRemoval = false
     @entityDOMElements = new EntityDOMElements this
 
