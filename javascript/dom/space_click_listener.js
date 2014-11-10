@@ -11,16 +11,15 @@
     }
 
     SpaceClickListener.prototype.attachListeners = function() {
-      return $canvas().on('click', this.addEntity);
+      return $canvas().on('dblclick', this.addEntity);
     };
 
     SpaceClickListener.prototype.addEntity = function(e) {
-      var color, entity, entityCount, name, position, x, y;
+      var color, entity, entityCount, mouse, name, position;
       entityCount = this.universe.entities.length;
       name = "entity-" + (entityCount + 1);
-      x = e.pageX - $canvas().position().left;
-      y = e.pageY - $canvas().position().top;
-      position = new Vector(x, y);
+      mouse = getMouse(e);
+      position = new Vector(mouse.x, mouse.y);
       color = randomColor();
       entity = new Entity({
         name: name,

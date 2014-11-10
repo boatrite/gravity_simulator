@@ -1,7 +1,8 @@
 class @RunsSimulation
   constructor: (@universe) ->
     @step = 1/60
-    @play()
+    #@play()
+    @tick()
 
   toggleRunning: =>
     if @running

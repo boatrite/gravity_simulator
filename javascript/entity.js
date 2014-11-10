@@ -7,6 +7,7 @@
       this.drawPath = __bind(this.drawPath, this);
       this.drawBody = __bind(this.drawBody, this);
       this.buildFromOptions = __bind(this.buildFromOptions, this);
+      this.containsPoint = __bind(this.containsPoint, this);
       this.draw = __bind(this.draw, this);
       this.update = __bind(this.update, this);
       this.buildFromOptions(options);
@@ -29,6 +30,10 @@
       this.entityDOMElements.draw();
       this.drawBody();
       return this.drawPath();
+    };
+
+    Entity.prototype.containsPoint = function(x, y) {
+      return new Circle(this.position, this.radius).containsPoint(x, y);
     };
 
     Entity.prototype.buildFromOptions = function(options) {

@@ -7,6 +7,7 @@
       this.center = center;
       this.radius = radius;
       this.color = color;
+      this.containsPoint = __bind(this.containsPoint, this);
       this.draw = __bind(this.draw, this);
     }
 
@@ -15,6 +16,10 @@
       context().arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI, false);
       context().fillStyle = this.color;
       return context().fill();
+    };
+
+    Circle.prototype.containsPoint = function(x, y) {
+      return this.center.distanceTo(new Vector(x, y)) <= this.radius;
     };
 
     return Circle;

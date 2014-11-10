@@ -6,6 +6,7 @@ require ['javascript/dom/entity_functions']
 require ['javascript/dom/entity_properties']
 require ['javascript/dom/simulator_controls']
 require ['javascript/dom/space_click_listener']
+require ['javascript/dom/space_drag_listener']
 require ['javascript/dom/space_dimension_inputs']
 require ['javascript/dom/space_refresh_listener']
 require ['javascript/dom/universe_constants_inputs']
@@ -28,6 +29,7 @@ require ['lib/underscore', 'lib/jquery-2.1.1', 'javascript/runs_simulation'], ->
 
   new SimulatorControls runner
   new SpaceClickListener universe
+  new SpaceDragListener universe
   new SpaceRefreshListener universe
   new SpaceDimensionInputs
   new UniverseConstantsInputs

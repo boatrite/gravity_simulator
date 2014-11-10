@@ -19,6 +19,9 @@ class @Entity
     @drawBody()
     @drawPath()
 
+  containsPoint: (x, y) =>
+    new Circle(@position, @radius).containsPoint(x, y)
+
   # private
 
   buildFromOptions: (options) =>
