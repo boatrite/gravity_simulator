@@ -16,6 +16,7 @@
 
     SpaceClickListener.prototype.addEntity = function(e) {
       var color, entity, entityCount, mouse, name, position;
+      e.preventDefault();
       entityCount = this.universe.entities.length;
       name = "entity-" + (entityCount + 1);
       mouse = getMouse(e);
@@ -27,6 +28,7 @@
         color: color
       });
       this.universe.addEntity(entity);
+      jumpToPageBottom();
       return forceRedraw();
     };
 

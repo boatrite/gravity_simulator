@@ -20,6 +20,10 @@
     return $canvas().trigger('forceRedraw');
   };
 
+  window.jumpToPageBottom = function() {
+    return $('html, body').scrollTop($(document).height());
+  };
+
   window.getMouse = function(e) {
     var element, html, htmlLeft, htmlTop, mx, my, offsetX, offsetY, styleBorderLeft, styleBorderTop, stylePaddingLeft, stylePaddingTop;
     element = canvas();

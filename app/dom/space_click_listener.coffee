@@ -6,6 +6,7 @@ class @SpaceClickListener
     $canvas().on 'dblclick', @addEntity
 
   addEntity: (e) =>
+    e.preventDefault()
     entityCount = @universe.entities.length
     name = "entity-#{entityCount+1}"
 
@@ -20,4 +21,5 @@ class @SpaceClickListener
       color: color
     )
     @universe.addEntity entity
+    jumpToPageBottom()
     forceRedraw()

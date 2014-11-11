@@ -14,6 +14,7 @@ class @Path
 
   draw: =>
     @drawUniformPath()
+    #@drawTaperedPath()
 
   drawUniformPath: =>
     context().beginPath()

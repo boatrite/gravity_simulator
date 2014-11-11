@@ -8,6 +8,7 @@
       this.updateText = __bind(this.updateText, this);
       this.attachListeners = __bind(this.attachListeners, this);
       this.$playBtn = $("#play");
+      this.updateText();
       this.attachListeners();
     }
 

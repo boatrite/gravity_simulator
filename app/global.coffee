@@ -11,8 +11,16 @@ window.context = ->
   canvas().getContext '2d'
 
 # TODO Remove need for this. Canvas should always be redrawing even when app is paused
+# Or is that too much of a performance hit?
 window.forceRedraw = ->
   $canvas().trigger 'forceRedraw'
+
+window.jumpToPageBottom = ->
+  # Needed when adding elements and page is too narrow
+  # for canvas and entity container divs.
+  # Without jumping to bottom, canvas drops off screen since
+  # entity div takes space above it
+  $('html, body').scrollTop $(document).height()
 
 # Creates an object with x and y defined,
 # set to the mouse position relative to the canvas
