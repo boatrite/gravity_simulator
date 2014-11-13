@@ -11,6 +11,13 @@ class @Universe
     for entity in entities
       @addEntity entity
 
+  entityAt: (x, y) =>
+    # Search in reverse order since the last entities appear on top,
+    # and we want to select the top-most one
+    for entity in @entities by -1
+      if entity.containsPoint(x, y)
+        return entity
+
   drawAll: =>
     @drawBackground()
     @drawEntities()

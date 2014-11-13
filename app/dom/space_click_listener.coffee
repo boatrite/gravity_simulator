@@ -3,15 +3,15 @@ class @SpaceClickListener
     @attachListeners()
 
   attachListeners: =>
-    $canvas().on 'click', @addEntity
+    $canvas().on 'dblclick', @addEntity
 
   addEntity: (e) =>
+    e.preventDefault()
     entityCount = @universe.entities.length
     name = "entity-#{entityCount+1}"
 
-    x = e.pageX - $canvas().position().left
-    y = e.pageY - $canvas().position().top
-    position = new Vector x, y
+    mouse = getMouse e
+    position = new Vector mouse.x, mouse.y
 
     color = randomColor()
 
@@ -21,4 +21,5 @@ class @SpaceClickListener
       color: color
     )
     @universe.addEntity entity
+    jumpToPageBottom()
     forceRedraw()

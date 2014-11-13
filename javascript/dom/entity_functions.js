@@ -21,7 +21,8 @@
 
     EntityFunctions.prototype.addListeners = function() {
       return this.$removeEntity.on('click', (function(_this) {
-        return function() {
+        return function(e) {
+          e.preventDefault();
           _this.entity.markedForRemoval = true;
           _this.$container.remove();
           return forceRedraw();

@@ -12,7 +12,8 @@ class @EntityFunctions
     @$removeEntity = $("a.remove-entity.#{@entity.name}")
 
   addListeners: =>
-    @$removeEntity.on 'click', =>
+    @$removeEntity.on 'click', (e) =>
+      e.preventDefault()
       @entity.markedForRemoval = true
       @$container.remove()
       forceRedraw()

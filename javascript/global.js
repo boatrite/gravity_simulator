@@ -20,4 +20,40 @@
     return $canvas().trigger('forceRedraw');
   };
 
+  window.jumpToPageBottom = function() {
+    return $('html, body').scrollTop($(document).height());
+  };
+
+  window.getMouse = function(e) {
+    var element, html, htmlLeft, htmlTop, mx, my, offsetX, offsetY, styleBorderLeft, styleBorderTop, stylePaddingLeft, stylePaddingTop;
+    element = canvas();
+    offsetX = 0;
+    offsetY = 0;
+    while (true) {
+      if (!element) {
+        break;
+      }
+      offsetX += element.offsetLeft;
+      offsetY += element.offsetTop;
+      element = element.offsetParent;
+    }
+    if (document.defaultView && document.defaultView.getComputedStyle) {
+      stylePaddingLeft = parseInt(document.defaultView.getComputedStyle(canvas(), null)['paddingLeft'], 10) || 0;
+      stylePaddingTop = parseInt(document.defaultView.getComputedStyle(canvas(), null)['paddingTop'], 10) || 0;
+      styleBorderLeft = parseInt(document.defaultView.getComputedStyle(canvas(), null)['borderLeftWidth'], 10) || 0;
+      styleBorderTop = parseInt(document.defaultView.getComputedStyle(canvas(), null)['borderTopWidth'], 10) || 0;
+      html = document.body.parentNode;
+      htmlTop = html.offsetTop;
+      htmlLeft = html.offsetLeft;
+      offsetX += stylePaddingLeft + styleBorderLeft + htmlLeft;
+      offsetY += stylePaddingTop + styleBorderTop + htmlTop;
+    }
+    mx = e.pageX - offsetX;
+    my = e.pageY - offsetY;
+    return {
+      x: mx,
+      y: my
+    };
+  };
+
 }).call(this);

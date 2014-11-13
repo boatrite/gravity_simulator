@@ -11,7 +11,7 @@
       this.tick = __bind(this.tick, this);
       this.toggleRunning = __bind(this.toggleRunning, this);
       this.step = 1 / 60;
-      this.play();
+      this.tick();
     }
 
     RunsSimulation.prototype.toggleRunning = function() {

@@ -16,6 +16,8 @@
 
   require(['javascript/dom/space_click_listener']);
 
+  require(['javascript/dom/space_drag_listener']);
+
   require(['javascript/dom/space_dimension_inputs']);
 
   require(['javascript/dom/space_refresh_listener']);
@@ -46,6 +48,7 @@
     runner = new RunsSimulation(universe);
     new SimulatorControls(runner);
     new SpaceClickListener(universe);
+    new SpaceDragListener(universe);
     new SpaceRefreshListener(universe);
     new SpaceDimensionInputs;
     return new UniverseConstantsInputs;

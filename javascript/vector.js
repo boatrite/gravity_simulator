@@ -7,6 +7,7 @@
       this.x = x;
       this.y = y;
       this.equals = __bind(this.equals, this);
+      this.distanceTo = __bind(this.distanceTo, this);
       this.length = __bind(this.length, this);
       this.normalize = __bind(this.normalize, this);
       this.divide = __bind(this.divide, this);
@@ -44,6 +45,10 @@
 
     Vector.prototype.length = function() {
       return Math.sqrt(this.x * this.x + this.y * this.y);
+    };
+
+    Vector.prototype.distanceTo = function(vector) {
+      return Math.sqrt(Math.pow(this.x - vector.x, 2) + Math.pow(this.y - vector.y, 2));
     };
 
     Vector.prototype.equals = function(other) {

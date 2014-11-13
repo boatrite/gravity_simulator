@@ -14,6 +14,7 @@
       this.updateAll = __bind(this.updateAll, this);
       this.forceRedraw = __bind(this.forceRedraw, this);
       this.drawAll = __bind(this.drawAll, this);
+      this.entityAt = __bind(this.entityAt, this);
       this.addEntities = __bind(this.addEntities, this);
       this.addEntity = __bind(this.addEntity, this);
       this.entities = [];
@@ -31,6 +32,17 @@
         _results.push(this.addEntity(entity));
       }
       return _results;
+    };
+
+    Universe.prototype.entityAt = function(x, y) {
+      var entity, _i, _ref;
+      _ref = this.entities;
+      for (_i = _ref.length - 1; _i >= 0; _i += -1) {
+        entity = _ref[_i];
+        if (entity.containsPoint(x, y)) {
+          return entity;
+        }
+      }
     };
 
     Universe.prototype.drawAll = function() {

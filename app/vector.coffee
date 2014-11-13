@@ -23,5 +23,8 @@ class @Vector
   length: =>
     Math.sqrt @x*@x + @y*@y
 
+  distanceTo: (vector) =>
+    Math.sqrt(Math.pow(@x - vector.x, 2) + Math.pow(@y - vector.y, 2))
+
   equals: (other) =>
     @x == other.x && @y == other.y
