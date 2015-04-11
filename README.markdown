@@ -1,4 +1,6 @@
-Gravity simulator
+# Gravity simulator
+
+Test project for fun
 
 Fixme
 * Tails should start at edge of circle, not center
